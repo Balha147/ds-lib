@@ -1,0 +1,178 @@
+@use '../../styles/app.scss' as app;
+
+$timeline-bg-color: var(--lib-timeline-bg-color);
+
+$timeline-bullet-size: var(--lib-timeline-bullet-size);
+$timeline-bullet-outline: var(--lib-timeline-bullet-outline);
+
+$timeline-gap-horizontal: var(--lib-timeline-gap-horizontal);
+$timeline-gap-vertical: var(--lib-timeline-gap-vertical);
+
+$timeline-vertical-content-group-width: var(--lib-timeline-vertical-content-group-width);
+
+.lib-timeline {
+    --lib-timeline-bg-color: white;
+    --lib-timeline-bullet-size: 3.5rem;
+    --lib-timeline-bullet-outline: 1rem;
+    --lib-timeline-gap-horizontal: 10rem;
+    --lib-timeline-gap-vertical: 1rem;
+    --lib-timeline-vertical-content-group-width: auto;
+
+    position: relative;
+    display: inline-flex;
+    gap: $timeline-bullet-outline;
+
+    &__line {
+        position: absolute;
+        z-index: 1;
+    }
+
+    &__bullet-group {
+        display: flex;
+        z-index: 2;
+    }
+
+    &__bullet {
+        box-sizing: content-box;
+        flex-shrink: 0;
+
+        width: $timeline-bullet-size;
+        height: $timeline-bullet-size;
+        line-height: $timeline-bullet-size;
+
+        font-size: 1.75rem;
+        border-radius: 50%;
+        border-style: solid;
+        border-color: $timeline-bg-color;
+        background-color: app.$bleu_turquoise_light;
+        color: app.$bleu_dark;
+        text-align: center;
+        transition: background-color ease 250ms, color ease 250ms;
+
+        &--icon {
+            font-size: 1.5rem;
+        }
+
+        &--pending {
+            background-color: app.$gris_light;
+            color: app.$gris_dark;
+        }
+    }
+
+    &__content-group {
+        display: flex;
+        justify-content: center;
+        z-index: 3;
+    }
+
+    &--reverse &__content-group {
+        order: -1;
+    }
+
+    &__content {
+        display: flex;
+        justify-content: center;
+        font-size: 1.125rem;
+        color: app.$noir;
+        transition: color ease 250ms;
+
+        &--pending {
+            color: app.$gris_dark;
+        }
+    }
+
+    &--small {
+        --lib-timeline-bullet-size: 2.8rem;
+        --lib-timeline-gap-horizontal: 8rem;
+        --lib-timeline-gap-vertical: 1.6rem;
+    }
+
+    &--small &__bullet {
+        font-size: 1.4rem;
+
+        &--icon {
+            font-size: 1.2rem;
+        }
+    }
+
+    &--small &__content {
+        font-size: 0.9rem;
+    }
+
+    &--horizontal {
+        flex-direction: column;
+    }
+
+    &--horizontal &__line {
+        top: calc($timeline-bullet-size * 0.5);
+        left: calc($timeline-gap-horizontal * 0.5 + $timeline-bullet-outline + $timeline-bullet-size * 0.5);
+        right: calc($timeline-gap-horizontal * 0.5 + $timeline-bullet-outline + $timeline-bullet-size * 0.5);
+        border-top: 1px solid app.$gris_light;
+    }
+
+    &--horizontal#{&}--reverse &__line {
+        top: auto;
+        bottom: calc($timeline-bullet-size * 0.5);
+    }
+
+    &--horizontal &__bullet-group {
+        gap: $timeline-gap-horizontal;
+        padding: 0 calc($timeline-gap-horizontal * 0.5);
+    }
+
+    &--horizontal &__bullet {
+        border-width: 0 $timeline-bullet-outline;
+    }
+
+    &--horizontal &__content {
+        width: calc($timeline-gap-horizontal + 2 * $timeline-bullet-outline + $timeline-bullet-size);
+        padding: 0 0.5rem;
+    }
+
+    &--horizontal &__content-group {
+        text-align: center;
+    }
+
+    &--horizontal#{&}--reverse &__content-group {
+        align-items: flex-end;
+    }
+
+    &--vertical &__line {
+        left: calc($timeline-bullet-size * 0.5);
+        top: calc($timeline-gap-vertical * 0.5 + $timeline-bullet-outline + $timeline-bullet-size * 0.5);
+        bottom: calc($timeline-gap-vertical * 0.5 + $timeline-bullet-outline + $timeline-bullet-size * 0.5);
+        border-left: 1px solid app.$gris_light;
+    }
+
+    &--vertical#{&}--reverse &__line {
+        left: auto;
+        right: calc($timeline-bullet-size * 0.5);
+    }
+
+    &--vertical &__bullet-group {
+        flex-direction: column;
+        gap: $timeline-gap-vertical;
+        padding: calc($timeline-gap-vertical * 0.5) 0;
+    }
+
+    &--vertical &__bullet {
+        border-width: $timeline-bullet-outline 0;
+    }
+
+    &--vertical &__content-group {
+        flex-direction: column;
+        width: $timeline-vertical-content-group-width;
+        text-align: left;
+
+    }
+
+    &--vertical#{&}--reverse &__content-group {
+        text-align: right;
+    }
+
+    &--vertical &__content {
+        flex-direction: column;
+        height: calc($timeline-gap-vertical + 2 * $timeline-bullet-outline + $timeline-bullet-size);
+        padding: 0.5rem 0;
+    }
+}

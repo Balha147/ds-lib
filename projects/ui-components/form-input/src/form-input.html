@@ -1,0 +1,35 @@
+<div class="lib-input-field" [class.lib-input-field--error]="isInvalid()" [class.lib-input-field--success]="isValid()">
+
+    <div class="lib-input-field__wrapper">
+        <ng-content select="[prefix]"></ng-content>
+
+        @if (type() === 'textarea') {
+        <textarea #control [id]="id" class="lib-input-field__control" [disabled]="disabled()" [readOnly]="readonly()"
+            [value]="value() ?? ''" [attr.aria-label]="ariaLabel()" [attr.aria-invalid]="isInvalid()"
+            (focus)="onFocus()" placeholder=" " (blur)="onBlur()" (keydown)="onKeydown($event)"
+            (input)="value.set(control.value)">
+      </textarea>
+        } @else {
+        <input #control [id]="id" [type]="type()" class="lib-input-field__control" [disabled]="disabled()"
+            [readOnly]="readonly()" [value]="value() ?? ''" [attr.aria-label]="ariaLabel()" placeholder=" "
+            [attr.aria-invalid]="isInvalid()" (focus)="onFocus()" (blur)="onBlur()" (keydown)="onKeydown($event)"
+            (input)="value.set(control.value)" />
+        }
+
+        @if (label()) {
+        <label [for]="id" class="lib-input-field__label">{{ label() }}</label>
+        }
+
+        <ng-content select="[suffix]"></ng-content>
+    </div>
+
+    @if (!noErrorMessages() && isInvalid() && firstErrorMessage()) {
+    <div class="lib-input-field__message lib-input-field__message--error">
+        {{ firstErrorMessage() }}
+    </div>
+    } @else if (hint()) {
+    <div class="lib-input-field__message">
+        {{ hint() }}
+    </div>
+    }
+</div>

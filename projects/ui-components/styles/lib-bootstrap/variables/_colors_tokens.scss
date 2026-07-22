@@ -1,0 +1,217 @@
+// Couleurs primaires
+$corail_lib_brand: #ff4b33;
+$corail_lib_dark: #db3924;
+
+// Couleurs secondaires
+$gris_sable_light: #ede8e6;
+$lib-focus-ring: #0066cc;
+$gris_sable_dark: #e4d8c4;
+$jaune_ivoire_light: #fcf7e7;
+$jaune_ivoire_dark: #f6ebc8;
+$jaune_light: #f4ec5b;
+$jaune_dark: #f9bd00;
+$orange: #ff8347;
+$orange_dark: #d14600;
+$orange_hover: #d14600;
+$vert_light: #03dfb2;
+$vert_dark: #008275;
+$bleu_turquoise_light: #5ad5d9;
+$bleu_turquoise_middle: #008299;
+$bleu_turquoise_dark: #006374;
+$bleu_light: #4283d1;
+$bleu_dark: #1a283e;
+$bleu_klein_light: #5f65e3;
+$bleu_klein_dark: #484dad;
+$bleu_klein_dark_a: #30369e;
+$violet_light: #6d4ca7;
+$violet_dark: #4b218e;
+$mauve: #d4c0f0;
+$rose_light: #f4b5d4;
+$rose_dark: #d81e88;
+$rose_fushia: #b9066c;
+$rouge_framboise: #de2b5b;
+$rose_chair_light: #f0b7a5;
+$rose_chair_dark: #cca196;
+
+// Couleurs interfaces
+$vert_positif: #1e7000;
+$rouge_negatif: #cc0000;
+$bleu_texte: #2964ae;
+$alerte_vert_positif: #bddab2;
+$alerte_rouge_negatif: #f9b2b2;
+$alerte_bleu_information: #c1d5ee;
+$alerte_jaune_attention: #f9f5ad;
+
+// Couleurs neutres
+$blanc: #ffffff;
+$noir: #222222;
+$gris_light: #e1e1e1;
+$gris_dark: #636363;
+$gris_background: #f6f6f6;
+
+// Couleurs accessibilité
+$corail_lib_brand_a: #ad1400;
+$corail_lib_dark_a: #8a1f10;
+$beige_sable: #CBBD93;
+
+$orange_a: #ffb896;
+$orange_dark_a: #d14600;
+$vert_dark_a: #006157;
+$bleu_turquoise_middle_a: #005f70;
+$bleu_turquoise_dark_a: #004450;
+$bleu_light_a: #255998;
+$bleu_klein_light_a: #3840dc;
+$violet_light_a: #67489d;
+$rose_dark_a: #a61768;
+$rose_fushia_a: #870950;
+$rouge_framboise_a: #ac1b42;
+$rose_chair_dark_a: #d2aca2;
+$violet_dark_a: #381078;
+
+$vert_positif_a: #165200;
+$rouge_negatif_a: #940000;
+$bleu_texte_a: #1d487c;
+
+$gris_dark_a: #474747;
+
+
+// Couleurs dégradées
+$corail_lib_brand_linear: linear-gradient(225deg, #ff7643 0%, #ff4b33 100%);
+$gris_sable_light_linear: linear-gradient(225deg, #faf5f3 0%, #ede8e6 100%);
+$gris_sable_dark_linear: linear-gradient(225deg, #f8f1e6 0%, #e4d8c4 100%);
+$jaune_ivoire_light_linear: linear-gradient(225deg, #fffdf6 0%, #fcf7e7 100%);
+$jaune_ivoire_dark_linear: linear-gradient(225deg, #fffbed 0%, #f6ebc8 100%);
+$jaune_light_linear: linear-gradient(225deg, #fffbb7 0%, #f8f169 100%);
+$jaune_dark_linear: linear-gradient(225deg, #ffdc6e 0%, #f9bd00 100%);
+$orange_linear: linear-gradient(225deg, #ffa51b 0%, #ff8347 100%);
+$vert_light_linear: linear-gradient(225deg, #aeffef 0%, #03dfb2 100%);
+$vert_dark_linear: linear-gradient(224deg, #005a51 0%, #008275 100%);
+$bleu_turquoise_light_linear: linear-gradient(225deg, #b5fdff 0%, #5ad5d9 100%);
+$bleu_turquoise_middle_linear: linear-gradient(225deg, #007286 0%, #008299 100%);
+$bleu_turquoise_dark_linear: linear-gradient(225deg, #01414c 0%, #006374 100%);
+$bleu_light_linear: linear-gradient(225deg, #1f5597 0%, #4283d1 100%);
+$bleu_klein_light_linear: linear-gradient(226deg, #3d44c9 0%, #5f65e3 100%);
+$bleu_klein_dark_linear: linear-gradient(225deg, #232876 0%, #484dad 100%);
+$violet_light_linear: linear-gradient(225deg, #593894 0%, #6d4ca7 100%);
+$violet_dark_linear: linear-gradient(225deg, #330f6d 0%, #4b218e 100%);
+$mauve_linear: linear-gradient(225deg, #f2e9ff 0%, #d4c0f0 100%);
+$rose_light_linear: linear-gradient(225deg, #ffe8f3 0%, #f4b5d4 100%);
+$rose_dark_linear: linear-gradient(225deg, #a30961 0%, #d81e88 100%);
+$rose_fushia_linear: linear-gradient(225deg, #8d0151 0%, #b9066c 100%);
+$rose_framboise_linear: linear-gradient(225deg, #b50d3a 0%, #de2b5b 100%);
+$rose_chair_light_linear: linear-gradient(225deg, #ffdfd2 0%, #f0b7a5 100%);
+$rose_chair_dark_linear: linear-gradient(225deg, #edd5ce 0%, #cca196 100%);
+
+$lib-colors: (
+    // Couleurs primaires
+    'corail_lib_brand': $corail_lib_brand,
+    'corail_lib_dark': $corail_lib_dark,
+
+    // Couleurs secondaires
+    'gris_sable_light': $gris_sable_light,
+    'gris_sable_dark': $gris_sable_dark,
+    'jaune_ivoire_light': $jaune_ivoire_light,
+    'jaune_ivoire_dark': $jaune_ivoire_dark,
+    'jaune_light': $jaune_light,
+    'jaune_dark': $jaune_dark,
+    'orange': $orange,
+    'orange_dark': $orange_dark,
+    'orange_hover': $orange_hover,
+    'vert_light': $vert_light,
+    'vert_dark': $vert_dark,
+    'lib-focus-ring': $lib-focus-ring,
+    'bleu_turquoise_light': $bleu_turquoise_light,
+    'bleu_turquoise_middle': $bleu_turquoise_middle,
+    'bleu_turquoise_dark': $bleu_turquoise_dark,
+    'bleu_light': $bleu_light,
+    'bleu_dark': $bleu_dark,
+    'bleu_klein_light': $bleu_klein_light,
+    'bleu_klein_dark': $bleu_klein_dark,
+    'bleu_klein_dark_a': $bleu_klein_dark_a,
+    'violet_light': $violet_light,
+    'violet_dark': $violet_dark,
+    'mauve': $mauve,
+    'rose_light': $rose_light,
+    'rose_dark': $rose_dark,
+    'rose_fushia': $rose_fushia,
+    'rouge_framboise': $rouge_framboise,
+    'rose_chair_light': $rose_chair_light,
+    'rose_chair_dark': $rose_chair_dark,
+
+    // Couleurs interfaces
+    'vert_positif': $vert_positif,
+    'rouge_negatif': $rouge_negatif,
+    'bleu_texte': $bleu_texte,
+    'alerte_vert_positif': $alerte_vert_positif,
+    'alerte_rouge_negatif': $alerte_rouge_negatif,
+    'alerte_bleu_information': $alerte_bleu_information,
+    'alerte_jaune_attention': $alerte_jaune_attention,
+
+    // Couleurs neutres
+    'blanc': $blanc,
+    'noir': $noir,
+    'gris_light': $gris_light,
+    'gris_dark': $gris_dark,
+    'gris_background': $gris_background,
+    'beige_sable': $beige_sable,
+
+    // Couleurs accessibilité
+    'corail_lib_brand_a': $corail_lib_brand_a,
+    'corail_lib_dark_a': $corail_lib_dark_a,
+
+    'orange_a': $orange_a,
+    'orange_dark_a': $orange_dark_a,
+    'vert_dark_a': $vert_dark_a,
+    'bleu_turquoise_middle_a': $bleu_turquoise_middle_a,
+    'bleu_turquoise_dark_a': $bleu_turquoise_dark_a,
+    'bleu_light_a': $bleu_light_a,
+    'bleu_klein_light_a': $bleu_klein_light_a,
+    'violet_light_a': $violet_light_a,
+    'rose_dark_a': $rose_dark_a,
+    'rose_fushia_a': $rose_fushia_a,
+    'rouge_framboise_a': $rouge_framboise_a,
+    'rose_chair_dark_a': $rose_chair_dark_a,
+    'violet_dark_a': $violet_dark_a,
+
+    'vert_positif_a': $vert_positif_a,
+    'rouge_negatif_a': $rouge_negatif_a,
+    'bleu_texte_a': $bleu_texte_a,
+
+    'gris_dark_a': $gris_dark_a,
+
+    'corail_lib_brand_linear': $corail_lib_brand_linear,
+    'gris_sable_light_linear': $gris_sable_light_linear,
+    'gris_sable_dark_linear': $gris_sable_dark_linear,
+    'jaune_ivoire_light_linear': $jaune_ivoire_light_linear,
+    'jaune_ivoire_dark_linear': $jaune_ivoire_dark_linear,
+    'jaune_light_linear': $jaune_light_linear,
+    'jaune_dark_linear': $jaune_dark_linear,
+    'orange_linear': $orange_linear,
+    'vert_light_linear': $vert_light_linear,
+    'vert_dark_linear': $vert_dark_linear,
+    'bleu_turquoise_light_linear': $bleu_turquoise_light_linear,
+    'bleu_turquoise_middle_linear': $bleu_turquoise_middle_linear,
+    'bleu_turquoise_dark_linear': $bleu_turquoise_dark_linear,
+    'bleu_light_linear': $bleu_light_linear,
+    'bleu_klein_light_linear': $bleu_klein_light_linear,
+    'bleu_klein_dark_linear': $bleu_klein_dark_linear,
+    'violet_light_linear': $violet_light_linear,
+    'violet_dark_linear': $violet_dark_linear,
+    'mauve_linear': $mauve_linear,
+    'rose_light_linear': $rose_light_linear,
+    'rose_dark_linear': $rose_dark_linear,
+    'rose_fushia_linear': $rose_fushia_linear,
+    'rose_framboise_linear': $rose_framboise_linear,
+    'rose_chair_light_linear': $rose_chair_light_linear,
+    'rose_chair_dark_linear': $rose_chair_dark_linear
+);
+
+@use "sass:map";
+
+@function color($name) {
+    @if map.has-key($lib-colors, $name) {
+        @return map.get($lib-colors, $name);
+    }
+
+    @error "La couleur '#{$name}' n'existe pas dans $lib-colors.";
+}

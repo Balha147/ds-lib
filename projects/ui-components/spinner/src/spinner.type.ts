@@ -1,0 +1,1 @@
+export type LibSpinnerSize = 'sm' | 'md' | 'lg';

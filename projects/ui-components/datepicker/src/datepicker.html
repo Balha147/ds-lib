@@ -1,0 +1,32 @@
+<div class="lib-input-field" [class.lib-input-field--error]="isInvalid()" [class.lib-input-field--success]="isValid()">
+
+    <div class="lib-input-field__wrapper">
+        <input #control libFlexibleDateInput type="text" class="lib-input-field__control" [id]="id"
+            [placeholder]="placeholder()" [disabled]="disabled()" [readOnly]="readonly()" [matDatepicker]="picker"
+            [value]="value()" (focus)="onFocus()" (blur)="onBlur()" (dateParsed)="onDateChange($event)"
+            (parseError)="onParseError($event)" (input)="onNativeInput($event)" (dateInput)="onDateChange($event.value)"
+            (dateChange)="onDateChange($event.value)" />
+
+        @if (label()) {
+        <label [for]="id" class="lib-input-field__label">{{ label() }}</label>
+        }
+
+        <div class="lib-input-field__suffix">
+            <button type="button" class="lib-button-unstyled" [disabled]="disabled()" (click)="openPicker()">
+                <lib-icon name="libicon-calendrier" aria-hidden="true"></lib-icon>
+            </button>
+        </div>
+    </div>
+
+    @if (!noErrorMessages() && isInvalid()) {
+    <div class="lib-input-field__message lib-input-field__message--error">
+        {{ firstErrorMessage() }}
+    </div>
+    } @else if (hint()) {
+    <div class="lib-input-field__message">
+        {{ hint() }}
+    </div>
+    }
+</div>
+
+<mat-datepicker #picker (closed)="onBlur()"></mat-datepicker>

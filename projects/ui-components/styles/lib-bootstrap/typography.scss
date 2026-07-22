@@ -1,0 +1,32 @@
+@use './variables/typography-tokens' as tokens;
+
+@font-face {
+    font-family: 'lib-poppins-regular';
+    src: url('./fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'lib-poppins-bold';
+    src: url('./fonts/Poppins-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.lib-ff-regular {
+    font-family: tokens.$lib-ff-regular;
+}
+
+.lib-ff-bold {
+    font-family: tokens.$lib-ff-bold;
+}
+
+// "fs" = font-size
+@each $name, $size in tokens.$lib-font-sizes {
+    .lib-fs-#{$name} {
+        font-size: $size !important;
+    }
+}

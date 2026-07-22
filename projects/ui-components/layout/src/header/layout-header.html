@@ -1,0 +1,13 @@
+<lib-layout-logo class="lib-layout-header__logo lib-layout-logo"></lib-layout-logo>
+
+<div class="lib-layout-header__toggle">
+    <button type="button" class="lib-button-unstyled lib-fs-8" (click)="toggleNav()">
+        @if (isNavOpened()) {
+        Fermer
+        <i class="libicon-close fs-6 ms-1" aria-hidden="true"></i>
+        } @else {
+        Menu
+        <i class="libicon-burger-menu fs-6 ms-1" aria-hidden="true"></i>
+        }
+    </button>
+</div>

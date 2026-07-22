@@ -1,0 +1,215 @@
+.badge-palette {
+    width: 100%;
+    min-width: 0;
+
+    &__header {
+        margin-bottom: 24px;
+    }
+
+    &__title {
+        margin: 0 0 8px;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 1.3;
+    }
+
+    &__description {
+        max-width: 800px;
+        margin: 0;
+        color: #666;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    &__legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 20px;
+        margin-bottom: 24px;
+        padding: 16px;
+        border: 1px solid #e5e5e5;
+        border-radius: 8px;
+        background: #f8f8f8;
+    }
+
+    &__legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    &__legend-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: #212529;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    &__table {
+        width: 100%;
+        overflow-x: auto;
+        border: 1px solid #e5e5e5;
+        border-radius: 10px;
+        background: #fff;
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns:
+            minmax(180px, 1.4fr) repeat(4, minmax(150px, 1fr));
+        min-width: 900px;
+        border-bottom: 1px solid #e5e5e5;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        &--header {
+            background: #f8f8f8;
+            font-weight: 600;
+
+            .badge-palette__variant,
+            .badge-palette__color {
+                font-size: 13px;
+            }
+        }
+    }
+
+    &__color,
+    &__variant {
+        display: flex;
+        align-items: center;
+        min-height: 72px;
+        padding: 12px 16px;
+    }
+
+    &__color {
+        border-right: 1px solid #e5e5e5;
+
+        code {
+            padding: 4px 6px;
+            border-radius: 4px;
+            background: #f3f3f3;
+            color: #444;
+            font-family:
+                'SFMono-Regular',
+                Consolas,
+                'Liberation Mono',
+                monospace;
+            font-size: 12px;
+            word-break: break-word;
+        }
+    }
+
+    &__variant {
+        justify-content: center;
+        border-right: 1px solid #e5e5e5;
+
+        &:last-child {
+            border-right: 0;
+        }
+    }
+
+    @media (max-width: 768px) {
+        &__title {
+            font-size: 20px;
+        }
+
+        &__description {
+            font-size: 13px;
+        }
+
+        &__legend {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+}
+
+/* ==========================================================================
+   Bootstrap
+   ========================================================================== */
+
+.badge-bootstrap {
+    width: 100%;
+    min-width: 0;
+
+    &__header {
+        margin-bottom: 24px;
+    }
+
+    &__title {
+        margin: 0 0 8px;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 1.3;
+    }
+
+    &__description {
+        max-width: 800px;
+        margin: 0;
+        color: #666;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit,
+                minmax(200px, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 14px;
+        min-height: 110px;
+        padding: 20px;
+        border: 1px solid #e5e5e5;
+        border-radius: 10px;
+        background: #fff;
+    }
+
+    &__item .badge {
+        font-size: 14px;
+    }
+
+    &__item code {
+        display: block;
+        max-width: 100%;
+        padding: 5px 7px;
+        overflow-wrap: anywhere;
+        border-radius: 4px;
+        background: #f3f3f3;
+        color: #555;
+        font-family:
+            'SFMono-Regular',
+            Consolas,
+            'Liberation Mono',
+            monospace;
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    @media (max-width: 576px) {
+        &__grid {
+            grid-template-columns: 1fr;
+        }
+
+        &__item {
+            min-height: 90px;
+        }
+    }
+}

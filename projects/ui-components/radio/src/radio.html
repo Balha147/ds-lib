@@ -1,0 +1,12 @@
+<input #control type="radio" class="form-check-input me-1" [class.is-invalid]="isInvalid()" [class.is-valid]="isValid()"
+    [name]="name()" [id]="id" [checked]="isChecked()" [disabled]="disabled()" [attr.aria-label]="ariaLabel()"
+    [attr.aria-invalid]="isInvalid()" [attr.aria-readonly]="readonly() ? true : null" (focus)="onFocus()"
+    (blur)="onBlur()" (change)="onChange()" />
+
+@if (label()) {
+<label class="form-check-label" [for]="id">{{ label() }}</label>
+}
+
+@if (!noErrorMessages() && isInvalid() && firstErrorMessage()) {
+<div class="invalid-feedback">{{ firstErrorMessage() }}</div>
+}

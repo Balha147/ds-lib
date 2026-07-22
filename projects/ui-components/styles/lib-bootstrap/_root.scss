@@ -1,0 +1,10 @@
+@use '../app.scss' as app;
+
+:root {
+    @each $name, $color in app.$lib-colors {
+        --#{$name}: #{$color};
+    }
+
+    --lib-ff-regular: #{app.$lib-ff-regular};
+    --lib-ff-bold: #{app.$lib-ff-bold};
+}

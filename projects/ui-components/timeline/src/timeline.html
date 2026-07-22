@@ -1,0 +1,27 @@
+<div class="lib-timeline__line"></div>
+
+<div class="lib-timeline__bullet-group">
+  @for (item of items(); track $index) {
+  <div class="lib-timeline__bullet lib-ff-bold"
+    [class]="'lib-timeline__bullet ' + (item.icon ? 'libicon-' + item.icon : '')"
+    [class.lib-timeline__bullet--icon]="!!item.icon"
+    [class.lib-timeline__bullet--pending]="$index >= (pendingFromIndex() ?? MAX_INDEX)"
+    [attr.role]="item.icon ? 'img' : null" [attr.aria-hidden]="item.icon ? true : null">
+    @if (!item.icon) {
+    {{ $index + 1 }}
+    }
+  </div>
+  }
+</div>
+
+<div class="lib-timeline__content-group">
+  @for (item of items(); track $index) {
+  <div class="lib-timeline__content"
+    [class.lib-timeline__content--pending]="$index >= (pendingFromIndex() ?? MAX_INDEX)">
+    {{ item.content }}
+    @if (item.template) {
+    <ng-container [ngTemplateOutlet]="item.template"></ng-container>
+    }
+  </div>
+  }
+</div>

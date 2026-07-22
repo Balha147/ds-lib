@@ -1,0 +1,28 @@
+.lib-form-stepper-quicknav {
+    &__wrapper {
+        margin-bottom: -16px;
+    }
+
+    &__section {
+        flex-grow: 1;
+        margin-bottom: 1rem;
+
+        &--multi {
+            margin-right: 1rem;
+        }
+
+        &-title {
+            display: flex;
+            align-items: center;
+        }
+
+        &-icon {
+            margin-right: 0.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            line-height: 2.5rem;
+            text-align: center;
+            font-size: 1rem;
+        }
+    }
+}

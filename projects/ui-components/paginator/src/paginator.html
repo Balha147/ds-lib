@@ -1,0 +1,54 @@
+<div class="lib-paginator__info">
+    @if (showRangeLabel()) {
+    <span class="lib-paginator__range">
+        {{ rangeStart() }}–{{ rangeEnd() }} sur {{ totalItems() }} résultats
+    </span>
+    }
+
+    @if (showPageSizeSelector()) {
+    <label class="lib-paginator__page-size">
+        Par page :
+        <select class="lib-paginator__page-size-select" [disabled]="disabled()" [value]="pageSize()"
+            (change)="onPageSizeChange($any($event.target).value)">
+            @for (size of pageSizeOptions(); track size) {
+            <option [value]="size">
+                {{ size }}
+            </option>
+            }
+        </select>
+    </label>
+    }
+</div>
+
+<ul class="lib-paginator__pages">
+    <li>
+        <button type="button" class="lib-paginator__btn lib-paginator__btn--nav"
+            [disabled]="disabled() || !canGoPrevious()" aria-label="Page précédente" (click)="goTo(currentPage() - 1)">
+            <lib-icon name="libicon-chevron-gauche" size="sm" aria-hidden="true" />
+        </button>
+    </li>
+
+    @for (item of visiblePages(); track $index) {
+    <li>
+        @if (item === ellipsis) {
+        <span class="lib-paginator__ellipsis" aria-hidden="true">
+            …
+        </span>
+        } @else {
+        <button type="button" class="lib-paginator__btn" [class.lib-paginator__btn--active]="item === currentPage()"
+            [disabled]="disabled()" [attr.aria-current]="
+            item === currentPage() ? 'page' : null
+          " [attr.aria-label]="'Page ' + item" (click)="goTo(item)">
+            {{ item }}
+        </button>
+        }
+    </li>
+    }
+
+    <li>
+        <button type="button" class="lib-paginator__btn lib-paginator__btn--nav" [disabled]="disabled() || !canGoNext()"
+            aria-label="Page suivante" (click)="goTo(currentPage() + 1)">
+            <lib-icon name="libicon-chevron-droit" size="sm" aria-hidden="true" />
+        </button>
+    </li>
+</ul>

@@ -1,0 +1,21 @@
+.lib-form-stepper-container {
+    display: flex;
+    justify-content: center;
+
+    &__main {
+        flex-grow: 1;
+    }
+
+    &__nav {
+        margin-left: 2rem;
+    }
+
+    @media (max-width: 1023px) {
+        flex-direction: column-reverse;
+
+        &__nav {
+            margin-left: 0;
+            margin-bottom: 1.5rem;
+        }
+    }
+}

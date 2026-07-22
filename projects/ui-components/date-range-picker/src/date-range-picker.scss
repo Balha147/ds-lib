@@ -1,0 +1,11 @@
+.lib-input-field__control--range {
+    display: flex;
+    gap: 0.5rem;
+
+    ::ng-deep input {
+        border: none;
+        background: transparent;
+        outline: none;
+        width: 100%;
+    }
+}

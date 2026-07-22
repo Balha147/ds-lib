@@ -1,0 +1,68 @@
+@use '../app' as app;
+
+.lib-form-card {
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+
+    border-radius: app.$border-radius-lg;
+    border: 1px solid app.$gris_light;
+    background-color: app.$blanc;
+    color: app.$gris_dark;
+
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow ease 200ms, border-color ease 200ms, background-color ease 200ms, color ease 200ms;
+
+    &:hover,
+    &:has(.lib-form-card__inner:focus-visible) {
+        box-shadow: app.$box-shadow;
+        color: app.$noir;
+    }
+
+    &--checked {
+        box-shadow: none !important;
+        border-color: transparent;
+        background-color: app.$bleu_turquoise_light;
+        color: app.$bleu_dark;
+    }
+
+    &__inner {
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        padding: 24px;
+    }
+
+    &__tooltip {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0.25rem 0.5rem;
+        cursor: pointer;
+    }
+
+    &__checked {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0.25rem 0.5rem;
+        color: app.$blanc;
+        opacity: 0;
+        animation: libFormCardCheckedAnim 200ms ease 200ms forwards;
+    }
+}
+
+@keyframes libFormCardCheckedAnim {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

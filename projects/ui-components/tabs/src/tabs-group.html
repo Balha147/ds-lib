@@ -1,0 +1,41 @@
+<nav class="nav gap-2 lib-fs-7" [class.flex-column]="breakpoint()" [class]="'flex-' + breakpoint() + '-row'" [ngClass]="{
+    'lib-nav-pills': !classic(),
+    'nav-pills': !classic(),
+
+    'lib-nav-tabs': classic(),
+    'nav-tabs': classic(),
+
+    'justify-content-center': position() === 'center',
+    'justify-content-end': position() === 'end',
+    'nav-fill': position() === 'fill',
+    'nav-justified': position() === 'justified'
+  }">
+
+    @for (tab of tabs(); track tab) {
+
+    <a [href]="'#' + tab.label()" class="nav-link" [class.active]="tab === activeTab()"
+        [class.disabled]="tab.disabled()" [class.lib-droplet]="!classic() && tab === activeTab()"
+        [class.lib-droplet--bottom]="!classic() && tab === activeTab()"
+        [attr.aria-current]="tab === activeTab() ? 'page' : null" (click)="$event.preventDefault(); selectTab(tab)">
+
+        @if (tab.icon()) {
+
+        <i class="{{ tab.icon() }} me-1" aria-hidden="true">
+        </i>
+
+        }
+
+        {{ tab.label() }}
+
+    </a>
+
+    }
+
+</nav>
+
+@if (activeTemplate(); as template) {
+
+<ng-container [ngTemplateOutlet]="template">
+</ng-container>
+
+}

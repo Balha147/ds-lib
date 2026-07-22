@@ -1,0 +1,15 @@
+/* ---- bootstrap:components ---- */
+@use 'bootstrap/scss/forms';
+@use 'bootstrap/scss/buttons';
+@use 'bootstrap/scss/transitions';
+@use 'bootstrap/scss/dropdown';
+
+// Customization pour button-group
+@use 'bootstrap/scss/variables' as bs-vars;
+@use 'bootstrap/scss/button-group' with ($btn-border-width: 0);
+
+@use 'bootstrap/scss/nav';
+@use 'bootstrap/scss/alert';
+@use 'bootstrap/scss/progress';
+@use 'bootstrap/scss/close';
+@use 'bootstrap/scss/modal';

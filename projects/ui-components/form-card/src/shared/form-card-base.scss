@@ -1,0 +1,48 @@
+@use '../../../styles/app.scss' as app;
+
+.lib-form-card {
+    &__card {
+        transition: box-shadow ease 200ms, border-color ease 200ms, background-color ease 200ms, color ease 200ms;
+
+        &--checked {
+            border-color: transparent;
+            background-color: app.$bleu_turquoise_light;
+            color: app.$bleu_dark;
+        }
+    }
+
+    &__label {
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__tooltip {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0.25rem 0.5rem;
+        cursor: pointer;
+    }
+
+    &__checked {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0.25rem 0.5rem;
+        color: app.$blanc;
+        opacity: 0;
+        animation: mhFormCardCheckedAnim 200ms ease 200ms forwards;
+    }
+}
+
+@keyframes mhFormCardCheckedAnim {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

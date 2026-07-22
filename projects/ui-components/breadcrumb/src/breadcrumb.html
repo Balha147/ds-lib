@@ -1,0 +1,119 @@
+@if (hasItems()) {
+@let visible = visibleItems();
+@let collapsed = isCollapsed();
+
+<nav class="lib-breadcrumb lib-breadcrumb--{{ size() }}" [attr.aria-label]="ariaLabel()">
+    <ol class="lib-breadcrumb__list">
+        @for (
+        item of visible;
+        track $index;
+        let index = $index;
+        let isLast = $last
+        ) {
+        @let current = isCurrentItem(item);
+        @let showEllipsisBefore = collapsed && index === 1;
+
+        @if (showEllipsisBefore) {
+        <li class="lib-breadcrumb__item">
+            <button type="button" class="lib-breadcrumb__ellipsis" [attr.aria-label]="getEllipsisLabel()"
+                [attr.title]="getEllipsisLabel()" (click)="onEllipsisClick()">
+                <span aria-hidden="true">…</span>
+            </button>
+        </li>
+
+        <li class="lib-breadcrumb__separator" aria-hidden="true">
+            <ng-container [ngTemplateOutlet]="separatorTemplate" />
+        </li>
+        }
+
+        <li class="lib-breadcrumb__item" [class.lib-breadcrumb__item--current]="current"
+            [class.lib-breadcrumb__item--disabled]="item.disabled">
+            @if (current) {
+            <span class="lib-breadcrumb__current" aria-current="page" [attr.title]="item.label">
+                @if (item.icon) {
+                <span class="lib-breadcrumb__icon" aria-hidden="true">
+                    <lib-icon [name]="item.icon" [size]="getIconSize()" />
+                </span>
+                } @else if (
+                index === 0 && showHomeIcon()
+                ) {
+                <span class="lib-breadcrumb__icon" aria-hidden="true">
+                    <lib-icon [name]="homeIcon()" [size]="getIconSize()" />
+                </span>
+                }
+
+                <span class="lib-breadcrumb__label">
+                    {{ truncateLabel(item.label) }}
+                </span>
+            </span>
+            } @else if (item.disabled) {
+            <span class="lib-breadcrumb__disabled" aria-disabled="true" [attr.title]="item.label"
+                [attr.aria-label]="item.ariaLabel ?? null">
+                @if (item.icon) {
+                <span class="lib-breadcrumb__icon" aria-hidden="true">
+                    <lib-icon [name]="item.icon" [size]="getIconSize()" />
+                </span>
+                }
+
+                <span class="lib-breadcrumb__label">
+                    {{ truncateLabel(item.label) }}
+                </span>
+            </span>
+            } @else {
+            <a class="lib-breadcrumb__link" [href]="item.url ?? null" [attr.aria-label]="item.ariaLabel ?? null"
+                [attr.title]="item.label" (click)="
+                onItemClick(item);
+                item.url
+                  ? null
+                  : $event.preventDefault()
+              ">
+                @if (item.icon) {
+                <span class="lib-breadcrumb__icon" aria-hidden="true">
+                    <lib-icon [name]="item.icon" [size]="getIconSize()" />
+                </span>
+                } @else if (
+                index === 0 && showHomeIcon()
+                ) {
+                <span class="lib-breadcrumb__icon" aria-hidden="true">
+                    <lib-icon [name]="homeIcon()" [size]="getIconSize()" />
+                </span>
+                }
+
+                <span class="lib-breadcrumb__label">
+                    {{ truncateLabel(item.label) }}
+                </span>
+            </a>
+            }
+        </li>
+
+        @if (!isLast) {
+        <li class="lib-breadcrumb__separator" aria-hidden="true">
+            <ng-container [ngTemplateOutlet]="separatorTemplate" />
+        </li>
+        }
+        }
+    </ol>
+</nav>
+}
+
+<ng-template #separatorTemplate>
+    @switch (separator()) {
+    @case ('slash') {
+    <span>/</span>
+    }
+
+    @case ('dot') {
+    <span>•</span>
+    }
+
+    @case ('custom') {
+    <span>{{ customSeparator() }}</span>
+    }
+
+    @default {
+    <span class="lib-breadcrumb__chevron">
+        ›
+    </span>
+    }
+    }
+</ng-template>

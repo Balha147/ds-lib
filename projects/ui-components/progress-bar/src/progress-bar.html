@@ -1,0 +1,13 @@
+@for (bar of liveBars(); track $index) {
+
+<div role="progressbar" [attr.aria-label]="bar.ariaLabel" aria-valuemin="0" aria-valuemax="100"
+    [attr.aria-valuenow]="precision(bar.width)" class="progress-bar" [class.bg-info]="bar.type === 'info'"
+    [class.bg-success]="bar.type === 'success'" [class.bg-warning]="bar.type === 'warning'"
+    [class.bg-danger]="bar.type === 'danger'" [class.progress-bar-striped]="striped()"
+    [class.progress-bar-animated]="animated() && striped()" [style.width.%]="bar.width">
+    @if(showLabels()) {
+    {{ bar.width }}%
+    }
+</div>
+
+}

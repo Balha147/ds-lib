@@ -1,0 +1,22 @@
+@use '../app' as app;
+
+$duration: 200ms;
+
+// Note: for static shadow, use Bootstrap classes: `.shadow`, `.shadow-sm`, `.shadow-lg`, `.shadow-none`.
+
+.mh-shadow-hover {
+    &:hover {
+        transition: box-shadow ease $duration;
+        box-shadow: app.$box-shadow;
+    }
+
+    &-sm:hover {
+        transition: box-shadow ease $duration;
+        box-shadow: app.$box-shadow-sm;
+    }
+
+    &-lg:hover {
+        transition: box-shadow ease $duration;
+        box-shadow: app.$box-shadow-lg;
+    }
+}

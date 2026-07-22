@@ -1,0 +1,39 @@
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-4">
+    @for (item of items(); track trackByValue($index, item); let index = $index) {
+    @let checked = isChecked(item.value);
+
+    <div class="col">
+        <div class="lib-form-card" [class.lib-form-card--checked]="checked">
+            <input #control type="checkbox" class="visually-hidden" [id]="id + '-' + (index + 1)" [checked]="checked"
+                [disabled]="disabled()" (focus)="onFocus()" (blur)="onBlur()"
+                (click)="onInputClick(item, control.checked)" />
+
+            <label class="lib-form-card__inner" [for]="id + '-' + (index + 1)">
+                @if (item.tooltip) {
+                @if (!isTemplateRef(item.tooltip)) {
+                <i class="lib-form-card__tooltip libicon-cercle-information" [libTooltip]="item.tooltip"
+                    [libTooltipWidth]="item.tooltipWidth!" libTooltipPosition="bottom">
+                </i>
+                }
+                }
+
+                @if (checked) {
+                <lib-icon name="libicon-check" class="lib-form-card__checked" aria-hidden="true" />
+                }
+
+                @if (item.icon) {
+                <lib-icon [name]="item.icon" class="d-block mb-1 fs-3" aria-hidden="true" />
+                }
+
+                {{ item.label }}
+            </label>
+        </div>
+    </div>
+    }
+</div>
+
+@if (!noErrorMessages() && isInvalid() && firstErrorMessage()) {
+<div class="invalid-feedback">{{ firstErrorMessage() }}</div>
+} @else if (hint()) {
+<div class="form-text">{{ hint() }}</div>
+}

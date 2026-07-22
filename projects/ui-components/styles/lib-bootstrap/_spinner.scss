@@ -1,0 +1,85 @@
+@use 'sass:math';
+@use 'sass:list';
+@use '../app.scss' as app;
+
+.lib-spinner {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    text-align: left;
+
+    &--centered {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    &--full-screen {
+        position: fixed;
+        z-index: 3000;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        padding: 1rem;
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    &__icon-container {
+        display: inline-block;
+        padding: math.div(0.5em, 2);
+        line-height: 0;
+        text-align: left;
+
+        &--sm {
+            font-size: 1rem;
+        }
+
+        &--md {
+            font-size: 2.25rem;
+        }
+
+        &--lg {
+            font-size: 3.5rem;
+        }
+    }
+
+    &__icon {
+        display: inline-block;
+        height: 1em;
+        width: 1em;
+        animation: libSpinnerRotationAnim app.$lib-spinner-duration-base infinite linear;
+        animation-name: libSpinnerRotationAnim, libSpinnerColorAnim;
+        animation-duration: app.$lib-spinner-duration-base, (app.$lib-spinner-duration-base * app.$lib-spinner-length);
+        animation-iteration-count: infinite, infinite;
+    }
+
+    &__content {
+        &:empty {
+            display: none;
+        }
+    }
+}
+
+@keyframes libSpinnerRotationAnim {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes libSpinnerColorAnim {
+    $step: math.div(100%, app.$lib-spinner-length);
+
+    @for $index from 1 through app.$lib-spinner-length {
+
+        #{$step * ($index - 1)},
+        #{$step * $index - $step * 0.333333} {
+            color: list.nth(app.$lib-spinner-colors, $index);
+        }
+    }
+}

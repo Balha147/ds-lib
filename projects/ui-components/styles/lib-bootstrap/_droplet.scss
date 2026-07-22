@@ -1,0 +1,134 @@
+@use 'sass:map';
+@use 'sass:math';
+
+@use '../app' as app;
+
+@mixin droplet-size($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+.lib-droplet {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        mask-size: cover;
+        mask-repeat: no-repeat;
+        mask-position: center center;
+        background-color: inherit;
+    }
+
+    &--inside {
+        &::after {
+            transform: rotate(180deg);
+        }
+    }
+
+    &--top,
+    &--top-left,
+    &--top-right {
+        &::after {
+            @include droplet-size(app.$lib-droplet-long-side, app.$lib-droplet-short-side);
+            top: -#{app.$lib-droplet-short-side};
+            mask-image: url('./droplet/droplet-top.svg');
+        }
+
+        &.lib-droplet--inside {
+            &::after {
+                top: 0;
+            }
+        }
+    }
+
+    &--bottom,
+    &--bottom-left,
+    &--bottom-right {
+        &::after {
+            @include droplet-size(app.$lib-droplet-long-side, app.$lib-droplet-short-side);
+            bottom: -#{app.$lib-droplet-short-side};
+            mask-image: url('./droplet/droplet-bottom.svg');
+        }
+
+        &.lib-droplet--inside {
+            &::after {
+                bottom: 0;
+            }
+        }
+    }
+
+    &--left,
+    &--left-top,
+    &--left-bottom {
+        &::after {
+            @include droplet-size(app.$lib-droplet-short-side, app.$lib-droplet-long-side);
+            left: -#{app.$lib-droplet-short-side};
+            mask-image: url('./droplet/droplet-left.svg');
+        }
+
+        &.lib-droplet--inside {
+            &::after {
+                left: 0;
+            }
+        }
+    }
+
+    &--right,
+    &--right-top,
+    &--right-bottom {
+        &::after {
+            @include droplet-size(app.$lib-droplet-short-side, app.$lib-droplet-long-side);
+            right: -#{app.$lib-droplet-short-side};
+            mask-image: url('./droplet/droplet-right.svg');
+        }
+
+        &.lib-droplet--inside {
+            &::after {
+                right: 0;
+            }
+        }
+    }
+
+    &--top,
+    &--bottom {
+        &::after {
+            left: calc(50% - app.$lib-droplet-long-side / 2);
+        }
+    }
+
+    &--left,
+    &--right {
+        &::after {
+            top: calc(50% - app.$lib-droplet-long-side / 2);
+        }
+    }
+
+    &--top-left,
+    &--bottom-left {
+        &::after {
+            left: app.$lib-droplet-offset-from-corner;
+        }
+    }
+
+    &--top-right,
+    &--bottom-right {
+        &::after {
+            right: app.$lib-droplet-offset-from-corner;
+        }
+    }
+
+    &--left-top,
+    &--right-top {
+        &::after {
+            top: app.$lib-droplet-offset-from-corner;
+        }
+    }
+
+    &--left-bottom,
+    &--right-bottom {
+        &::after {
+            bottom: app.$lib-droplet-offset-from-corner;
+        }
+    }
+}

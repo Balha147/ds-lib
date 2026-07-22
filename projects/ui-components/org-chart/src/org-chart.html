@@ -1,0 +1,5 @@
+<div class="lib-org-chart__scroll" role="tree" [attr.aria-orientation]="orientation()"
+    [attr.aria-label]="'Organigramme'">
+    <lib-org-chart-node [node]="root()" [orientation]="orientation()" [initialExpandDepth]="initialExpandDepth()"
+        [depth]="0" (nodeClick)="nodeClick.emit($event)" />
+</div>

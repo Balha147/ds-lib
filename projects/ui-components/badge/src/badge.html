@@ -1,0 +1,22 @@
+<span class="lib-badge" [class.lib-badge--soft]="appearance() === 'soft'"
+    [class.lib-badge--solid]="appearance() === 'solid'" [class.lib-badge--outline]="appearance() === 'outline'"
+    [class.lib-badge--sm]="size() === 'sm'" [class.lib-badge--md]="size() === 'md'"
+    [class.lib-badge--lg]="size() === 'lg'" [class.lib-badge--disabled]="disabled()" [class]="customClass()"
+    [attr.aria-disabled]="disabled()">
+    @if (icon(); as iconName) {
+    <span class="lib-badge__icon">
+        <lib-icon [name]="iconName" [size]="iconSize()" aria-hidden="true" />
+    </span>
+    }
+
+    <span class="lib-badge__label">
+        {{ label() }}
+    </span>
+
+    @if (removable()) {
+    <button type="button" class="lib-badge__remove" [disabled]="disabled()" [attr.aria-label]="removeLabel()"
+        (click)="onRemove()">
+        <span aria-hidden="true">×</span>
+    </button>
+    }
+</span>

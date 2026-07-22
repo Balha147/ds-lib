@@ -1,0 +1,15 @@
+@use './variables/colors_tokens' as tokens;
+
+@each $name, $value in tokens.$lib-colors {
+    .color-#{$name} {
+        color: $value !important;
+    }
+
+    .bg-#{$name} {
+        background: $value !important;
+    }
+
+    .border-#{$name} {
+        border-color: $value !important;
+    }
+}

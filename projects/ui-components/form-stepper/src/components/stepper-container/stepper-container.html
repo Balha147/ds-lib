@@ -1,0 +1,17 @@
+<div class="lib-form-stepper-container">
+    @if (hasMainOverride()) {
+    <div class="lib-form-stepper-container__main">
+        <ng-container [ngTemplateOutlet]="mainOverrideTemplate() ?? null"
+            [ngTemplateOutletInjector]="stepTemplateInjector">
+        </ng-container>
+    </div>
+    } @else {
+    <div class="lib-form-stepper-container__main">
+        <lib-form-stepper-main [libFormStepperNoSubmitButton]="libFormStepperNoSubmitButton()"
+            [libFormStepperDisabled]="libFormStepperDisabled()" />
+    </div>
+    }
+
+    <lib-form-stepper-nav [libFormStepperNoStepsNav]="libFormStepperNoStepsNav()"
+        [libFormStepperNoOnboardingNav]="libFormStepperNoOnboardingNav()" class="lib-form-stepper-container__nav" />
+</div>

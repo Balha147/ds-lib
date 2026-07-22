@@ -1,0 +1,16 @@
+.lib-tooltip {
+    display: block;
+    position: relative;
+    z-index: 1080;
+    margin: 0;
+
+    background-color: var(--bs-alert-bg);
+    color: var(--bs-alert-color);
+    border: 1px solid var(--bs-alert-border-color, transparent);
+
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}

@@ -1,0 +1,56 @@
+@let currentNode = node();
+
+<div class="lib-org-chart__card" [class.lib-org-chart__card--disabled]="currentNode.disabled"
+    [class.lib-org-chart__card--expanded]="
+    hasChildren() && expanded()
+  " [attr.tabindex]="currentNode.disabled ? null : 0" role="button" [attr.aria-label]="currentNode.label"
+    (click)="onClick()" (keydown.enter)="onClick()" (keydown.space)="$event.preventDefault(); onClick()">
+    <div class="lib-org-chart__avatar">
+        @if (currentNode.avatarUrl) {
+        <img [src]="currentNode.avatarUrl" [alt]="currentNode.label" class="lib-org-chart__avatar-img" />
+        } @else if (currentNode.icon) {
+        <lib-icon [name]="currentNode.icon" size="md" aria-hidden="true" />
+        } @else {
+        <span class="lib-org-chart__initials">
+            {{ initials(currentNode.label) }}
+        </span>
+        }
+    </div>
+
+    <div class="lib-org-chart__info">
+        <span class="lib-org-chart__label">
+            {{ currentNode.label }}
+        </span>
+
+        @if (currentNode.role) {
+        <span class="lib-org-chart__role">
+            {{ currentNode.role }}
+        </span>
+        }
+    </div>
+
+    @if (hasChildren()) {
+    <button type="button" class="lib-org-chart__toggle" [class.lib-org-chart__toggle--collapsed]="!expanded()"
+        [attr.aria-expanded]="expanded()" [attr.aria-label]="
+        expanded()
+          ? 'Réduire ' + currentNode.label
+          : 'Développer ' + currentNode.label
+      " (click)="$event.stopPropagation(); toggle()">
+        <lib-icon name="libicon-chevron-bas" size="sm" aria-hidden="true" />
+    </button>
+    }
+</div>
+
+@if (hasChildren() && expanded()) {
+<ul class="lib-org-chart__children">
+    @for (
+    child of currentNode.children!;
+    track child.id
+    ) {
+    <li class="lib-org-chart__child">
+        <lib-org-chart-node [node]="child" [orientation]="orientation()" [initialExpandDepth]="initialExpandDepth()"
+            [depth]="depth() + 1" (nodeClick)="nodeClick.emit($event)" />
+    </li>
+    }
+</ul>
+}

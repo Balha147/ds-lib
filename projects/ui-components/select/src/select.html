@@ -1,0 +1,77 @@
+@let currentItem = selectedItem();
+@let items = resolvedItems();
+
+@if (label() && !autocomplete()) {
+<label [for]="id" class="form-label">{{ label() }}</label>
+}
+
+<div class="lib-form-select__box">
+    <input #input type="text" autocomplete="off" class="lib-form-select__input" cdkOverlayOrigin [id]="id"
+        [attr.aria-label]="ariaLabel()" [value]="formAutocomplete().inputValue() ?? ''"
+        [readOnly]="!autocomplete() || formAutocomplete().inputValue() === undefined" [disabled]="disabled()"
+        [placeholder]="currentItem ? '' : placeholder()" [libFormAutocomplete]="items"
+        [libFormAutocompleteFilter]="formAutocompleteFilter"
+        (libFormAutocompleteSelection)="onSuggestionClicked($event)" />
+
+    <div class="lib-form-select__div form-select text-truncate" [class.lib-form-select__div--disabled]="disabled()"
+        [class.lib-form-select__div--searching]="autocomplete() && formAutocomplete().inputValue() !== undefined && formAutocomplete().inputValue() !== ''"
+        [class.is-invalid]="isInvalid()" [class.is-valid]="isValid()">
+        @if (currentItem) {
+        <ng-container [ngTemplateOutlet]="itemTemplate"
+            [ngTemplateOutletContext]="{ $implicit: currentItem }"></ng-container>
+        }
+        &nbsp;
+    </div>
+</div>
+
+@if (label() && autocomplete()) {
+<label [for]="id" class="form-label">{{ label() }}</label>
+}
+
+@if (!noErrorMessages() && isInvalid()) {
+<div class="invalid-feedback">{{ firstErrorMessage() }}</div>
+} @else if (hint()) {
+<div class="form-text">{{ hint() }}</div>
+}
+
+<ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="overlayOrigin()"
+    [cdkConnectedOverlayOpen]="!readonly() && formAutocomplete().shouldShowSuggestions()">
+    <div class="dropdown-menu show lib-form-select-menu" [style.width.px]="input.offsetWidth">
+        @let suggestions = formAutocomplete().suggestions();
+
+        @for (item of suggestions; track trackByValue($index, item); let suggestionIndex = $index) {
+        <button type="button"
+            class="lib-form-select-menu__item d-flex justify-content-between align-items-center dropdown-item"
+            [class.lib-form-select-menu__item--focused]="suggestionIndex === formAutocomplete().focusedSuggestionIndex()"
+            (click)="onSuggestionClicked(item)">
+            <span class="text-truncate">
+                <ng-container [ngTemplateOutlet]="itemTemplate"
+                    [ngTemplateOutletContext]="{ $implicit: item }"></ng-container>
+            </span>
+
+            @if (value()?.code === item.value) {
+            <lib-icon name="libicon-check" class="ms-3" aria-hidden="true"></lib-icon>
+            }
+        </button>
+        }
+
+        @if (!suggestions.length) {
+        <button type="button" disabled
+            class="lib-form-select-menu__item d-flex justify-content-between align-items-center dropdown-item disabled">
+            <span class="text-truncate">Aucun résultat</span>
+        </button>
+        }
+    </div>
+</ng-template>
+
+<ng-template #itemTemplate let-item>
+    @if (item.template && templatePosition() === 'before') {
+    <ng-container [ngTemplateOutlet]="item.template"></ng-container>
+    }
+
+    {{ item.label }}
+
+    @if (item.template && templatePosition() === 'after') {
+    <ng-container [ngTemplateOutlet]="item.template"></ng-container>
+    }
+</ng-template>

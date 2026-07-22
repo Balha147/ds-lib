@@ -1,0 +1,34 @@
+<div class="lib-accordion" [class.lib-accordion--sm]="size() === 'sm'" [class.lib-accordion--md]="size() === 'md'"
+    [class.lib-accordion--lg]="size() === 'lg'" [class.lib-accordion--flush]="flush()" [class]="customClass()">
+    @for (item of items(); track item.id) {
+    <div class="lib-accordion__item" [class.lib-accordion__item--expanded]="isExpanded(item)"
+        [class.lib-accordion__item--disabled]="item.disabled">
+        <button type="button" class="lib-accordion__trigger" [id]="getButtonId(item)" [disabled]="item.disabled"
+            [attr.aria-expanded]="isExpanded(item)" [attr.aria-controls]="getPanelId(item)" (click)="toggle(item)"
+            (keydown)="onKeydown($event, item)">
+            <span class="lib-accordion__trigger-content">
+                @if (item.icon) {
+                <lib-icon class="lib-accordion__icon" [name]="item.icon" [size]="iconSize()" aria-hidden="true" />
+                }
+
+                <span class="lib-accordion__title">
+                    {{ item.title }}
+                </span>
+            </span>
+
+            <lib-icon class="lib-accordion__chevron" [name]="
+            isExpanded(item)
+              ? collapseIcon()
+              : expandIcon()
+          " [size]="iconSize()" aria-hidden="true" />
+        </button>
+
+        <div class="lib-accordion__panel" [id]="getPanelId(item)" role="region"
+            [attr.aria-labelledby]="getButtonId(item)" [attr.hidden]="!isExpanded(item) ? true : null">
+            <div class="lib-accordion__content">
+                {{ item.content }}
+            </div>
+        </div>
+    </div>
+    }
+</div>

@@ -1,0 +1,14 @@
+<input #control type="checkbox" class="form-check-input" [class.is-invalid]="isInvalid()" [class.is-valid]="isValid()"
+    [id]="id" [disabled]="disabled()" [checked]="value()" [attr.aria-label]="ariaLabel()"
+    [attr.aria-invalid]="isInvalid()" [attr.aria-readonly]="readonly() ? true : null" (focus)="onFocus()"
+    (blur)="onBlur()" (change)="onChange(control.checked)" />
+
+@if (label()) {
+<label class="form-check-label" [for]="id">{{ label() }}</label>
+}
+
+@if (!noErrorMessages() && isInvalid() && firstErrorMessage()) {
+<div class="invalid-feedback">{{ firstErrorMessage() }}</div>
+} @else if (hint()) {
+<div class="form-text">{{ hint() }}</div>
+}

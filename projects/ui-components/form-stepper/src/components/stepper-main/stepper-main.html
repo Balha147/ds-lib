@@ -1,0 +1,31 @@
+@let currentMain = main();
+
+@if (currentMain) {
+
+<a href="#prev" libFormStepperPrev class="lib-form-stepper-main__prev color-bleu_dark lib-ff-regular lib-fs-6"
+    [class]="config.css.prev">
+    <i class="libicon-fleche-gauche lib-form-stepper-main__prev-icon" aria-hidden="true"></i>
+    <span class="lib-form-stepper-main__prev-text">{{ config.translations.prev }}</span>
+</a>
+
+<h3 class="lib-form-stepper-main__title lib-ff-bold" [class]="config.css.stepTitle">
+    {{ currentMain.stepTitle }}
+</h3>
+
+<div class="lib-form-stepper-main__content">
+    <ng-container [ngTemplateOutlet]="currentMain.stepTemplate" [ngTemplateOutletInjector]="stepTemplateInjector">
+    </ng-container>
+</div>
+
+@if (!currentMain.isLastStep) {
+<button libFormStepperNext type="button" class="lib-form-stepper-main__next btn btn-primary btn-rounded"
+    [class]="config.css.next">
+    {{ currentMain.isOnboarding ? config.translations.start : config.translations.next }}
+</button>
+} @else if (!libFormStepperNoSubmitButton()) {
+<button type="submit" [disabled]="!isFormValid() || libFormStepperDisabled()"
+    class="lib-form-stepper-main__submit btn btn-primary btn-rounded" [class]="config.css.submit">
+    {{ config.translations.submit }}
+</button>
+}
+}

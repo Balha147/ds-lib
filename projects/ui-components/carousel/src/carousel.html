@@ -1,0 +1,82 @@
+@if (items().length > 0) {
+<section class="lib-carousel__wrapper" [attr.aria-label]="ariaLabel()" (keydown)="onKeydown($event)">
+    <div class="lib-carousel" [class.lib-carousel--sm]="size() === 'sm'" [class.lib-carousel--md]="size() === 'md'"
+        [class.lib-carousel--lg]="size() === 'lg'" [class.lib-carousel--fade]="transition() === 'fade'"
+        [class.lib-carousel--slide]="transition() === 'slide'" tabindex="0" role="region"
+        [attr.aria-roledescription]="'carousel'">
+        <!-- Slides -->
+        <div class="lib-carousel__viewport">
+            @for (item of items(); track item.id; let index = $index) {
+            <article class="lib-carousel__slide" [class.lib-carousel__slide--active]="
+              index === currentIndex()
+            " [attr.aria-hidden]="index !== currentIndex()">
+                @if (item.href) {
+                <a class="lib-carousel__link" [href]="item.href" [attr.tabindex]="
+                  index === currentIndex() ? 0 : -1
+                ">
+                    <img class="lib-carousel__image" [src]="item.src" [alt]="item.alt" loading="lazy" />
+                </a>
+                } @else {
+                <img class="lib-carousel__image" [src]="item.src" [alt]="item.alt" />
+                }
+
+                @if (item.title || item.description) {
+                <div class="lib-carousel__caption">
+                    <div class="lib-carousel__caption-content">
+                        @if (item.title) {
+                        <h3 class="lib-carousel__title">
+                            {{ item.title }}
+                        </h3>
+                        }
+
+                        @if (item.description) {
+                        <p class="lib-carousel__description">
+                            {{ item.description }}
+                        </p>
+                        }
+                    </div>
+                </div>
+                }
+            </article>
+            }
+        </div>
+
+        <!-- Previous -->
+        @if (showControls() && hasMultipleSlides()) {
+        <button type="button" class="btn btn-light btn-rounded lib-carousel__control lib-carousel__control--prev"
+            [disabled]="!canGoPrevious()" aria-label="Image précédente" (click)="previous()">
+            <span aria-hidden="true">‹</span>
+        </button>
+
+        <!-- Next -->
+        <button type="button" class="btn btn-light btn-rounded lib-carousel__control lib-carousel__control--next"
+            [disabled]="!canGoNext()" aria-label="Image suivante" (click)="next()">
+            <span aria-hidden="true">›</span>
+        </button>
+        }
+
+        <!-- Counter -->
+        @if (showCounter() && hasMultipleSlides()) {
+        <div class="lib-carousel__counter" aria-live="polite" aria-atomic="true">
+            {{ currentIndex() + 1 }} / {{ slideCount() }}
+        </div>
+        }
+
+        <!-- Indicators -->
+        @if (showIndicators() && hasMultipleSlides()) {
+        <div class="lib-carousel__indicators" role="tablist" aria-label="Navigation entre les images">
+            @for (item of items(); track item.id; let index = $index) {
+            <button type="button" class="lib-carousel__indicator" [class.lib-carousel__indicator--active]="
+                index === currentIndex()
+              " role="tab" [attr.aria-selected]="index === currentIndex()"
+                [attr.aria-label]="'Afficher l’image ' + (index + 1)" [attr.aria-current]="
+                index === currentIndex() ? 'true' : null
+              " (click)="goTo(index)">
+                <span class="lib-carousel__indicator-dot"></span>
+            </button>
+            }
+        </div>
+        }
+    </div>
+</section>
+}

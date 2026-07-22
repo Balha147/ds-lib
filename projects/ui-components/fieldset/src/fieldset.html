@@ -1,0 +1,23 @@
+<fieldset class="lib-fieldset__container" [disabled]="disabled()"
+    [class.lib-fieldset__container--subtle]="variant() === 'subtle'"
+    [class.lib-fieldset__container--outlined]="variant() === 'outlined'">
+    @if (legend() || description()) {
+    <div class="lib-fieldset__header">
+        @if (legend()) {
+        <legend class="lib-fieldset__legend">
+            {{ legend() }}
+        </legend>
+        }
+
+        @if (description()) {
+        <p class="lib-fieldset__description">
+            {{ description() }}
+        </p>
+        }
+    </div>
+    }
+
+    <div class="lib-fieldset__content">
+        <ng-content />
+    </div>
+</fieldset>

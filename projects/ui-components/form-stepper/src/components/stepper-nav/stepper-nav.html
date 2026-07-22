@@ -1,0 +1,136 @@
+@let currentState = state();
+
+<div class="lib-form-stepper-nav-inner">
+    <div class="lib-form-stepper-nav-inner__content">
+        <nav class="lib-form-stepper-nav-sections">
+
+            @if (currentState.onboardingInfo && !libFormStepperNoOnboardingNav()) {
+            <div class="lib-form-stepper-nav-section"
+                [class.lib-form-stepper-nav-section--valid]="currentState.maxStepIndexViewed >= 0"
+                [class.lib-form-stepper-nav-section--current]="currentState.stepIndex === -1">
+                <span class="lib-form-stepper-nav-section__bullet"></span>
+
+                <button type="button" tabindex="-1" class="lib-form-stepper-nav-section__btn"
+                    (click)="navigateByStepIndex($event, currentState.onboardingInfo.index)">
+                    <lib-form-stepper-section-icon class="lib-form-stepper-nav-section__icon"
+                        [libFormStepperIcon]="currentState.onboardingInfo.icon"
+                        [libFormStepperIsValid]="currentState.maxStepIndexViewed >= 0">
+                    </lib-form-stepper-section-icon>
+
+                    <span class="lib-form-stepper-nav-section__title lib-form-stepper-nav-section__title--width"
+                        [class.lib-form-stepper-nav-section__title--expanded]="!isMobile() || currentState.stepIndex === currentState.onboardingInfo.index">
+                        {{ currentState.onboardingInfo.title }}
+                    </span>
+                </button>
+            </div>
+            }
+
+            @for (section of currentState.nav; track section.id; let sectionIndex = $index, isLastSectionIndex = $last)
+            {
+            @let offset = sectionStepOffset(sectionIndex);
+            @let sectionValid = isSectionValid(section, offset, currentState.maxStepIndexViewed);
+            @let steps = section.steps();
+            @let currentStepInSection = currentState.sectionIndex === sectionIndex
+            ? steps[currentState.stepIndex - offset]
+            : undefined;
+
+            <div class="lib-form-stepper-nav-section" [class.lib-form-stepper-nav-section--valid]="sectionValid"
+                [class.lib-form-stepper-nav-section--current]="currentState.sectionIndex === sectionIndex"
+                [class.lib-form-stepper-nav-section--last]="!currentState.summaryInfo && isLastSectionIndex">
+                <span class="lib-form-stepper-nav-section__bullet"></span>
+
+                <button type="button" tabindex="-1" class="lib-form-stepper-nav-section__btn"
+                    [attr.disabled]="(!steps.length || (offset > currentState.maxStepIndexViewed && !steps[0].field.dirty())) ? true : null"
+                    (click)="navigateByStepIndex($event, offset, sectionIndex)" cdkOverlayOrigin
+                    #mobileOverlayOrigin="cdkOverlayOrigin">
+
+                    @if (currentStepInSection?.sectionProgression) {
+                    <span class="lib-form-stepper-nav-section__progression">
+                        {{ currentStepInSection.sectionProgression.count }}/{{
+                        currentStepInSection.sectionProgression.total }}
+                    </span>
+                    }
+
+                    <lib-form-stepper-section-icon class="lib-form-stepper-nav-section__icon"
+                        [libFormStepperIcon]="section.icon" [libFormStepperIsValid]="sectionValid" />
+
+                    <span class="lib-form-stepper-nav-section__title lib-form-stepper-nav-section__title--width"
+                        [class.lib-form-stepper-nav-section__title--expanded]="!isMobile() || currentState.sectionIndex === sectionIndex">
+                        {{ section.title }}
+
+                        @if (!(section.noStepsNav ?? libFormStepperNoStepsNav()) && isMobile() && steps.length >= 2 &&
+                        currentState.sectionIndex === sectionIndex) {
+                        <i class="lib-form-stepper-nav-section__arrow libicon-fleche-dropdown-texte"
+                            [class.lib-form-stepper-nav-section__arrow--open]="isMobileOverlayOpen()"
+                            aria-hidden="true">
+                        </i>
+                        }
+                    </span>
+                </button>
+
+                @if (!(section.noStepsNav ?? libFormStepperNoStepsNav()) && currentState.sectionIndex === sectionIndex)
+                {
+                @if (!isMobile()) {
+                <ng-container [ngTemplateOutlet]="stepsTemplate"></ng-container>
+                } @else {
+                <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="mobileOverlayOrigin"
+                    [cdkConnectedOverlayOpen]="isMobileOverlayOpen()"
+                    [cdkConnectedOverlayPositions]="sectionIndex < currentState.nav.length / 2 ? mobileOverlayPosition.left : mobileOverlayPosition.right">
+                    <div class="lib-form-stepper-nav lib-form-stepper-nav--overlay" animate.leave="nav-fade-out">
+                        <ng-container [ngTemplateOutlet]="stepsTemplate"></ng-container>
+                    </div>
+                </ng-template>
+                }
+                }
+
+                <ng-template #stepsTemplate>
+                    @if (steps.length >= 2) {
+                    <div class="lib-form-stepper-nav-steps" [class.lib-form-stepper-nav-steps--expanded]="true"
+                        [class.lib-form-stepper-nav-steps--left]="sectionIndex < currentState.nav.length / 2"
+                        [class.lib-form-stepper-nav-steps--right]="sectionIndex >= currentState.nav.length / 2">
+                        <div class="lib-form-stepper-nav-steps__inner">
+                            @for (step of steps; track step.id; let relativeIndex = $index) {
+                            @let globalIndex = offset + relativeIndex;
+                            @let stepValid = isStepValid(step, globalIndex, currentState.maxStepIndexViewed);
+
+                            <div class="lib-form-stepper-nav-step" [class.lib-form-stepper-nav-step--valid]="stepValid"
+                                [class.lib-form-stepper-nav-step--current]="currentState.stepIndex === globalIndex">
+                                <i class="libicon-cercle-check lib-form-stepper-nav-step__icon" aria-hidden="true"></i>
+
+                                <button type="button" tabindex="-1" class="lib-form-stepper-nav-step__btn"
+                                    [attr.disabled]="isStepDisabled(step, globalIndex, currentState.maxStepIndexViewed) ? true : null"
+                                    (click)="navigateByStepIndex($event, globalIndex)">
+                                    {{ step.shortTitle || step.title }}
+                                </button>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    }
+                </ng-template>
+            </div>
+            }
+
+            @if (currentState.summaryInfo) {
+            <div class="lib-form-stepper-nav-section lib-form-stepper-nav-section--last"
+                [class.lib-form-stepper-nav-section--valid]="currentState.allStepsViewed"
+                [class.lib-form-stepper-nav-section--current]="currentState.stepIndex === currentState.lastStepIndex">
+                <span class="lib-form-stepper-nav-section__bullet"></span>
+
+                <button type="button" tabindex="-1" class="lib-form-stepper-nav-section__btn"
+                    [attr.disabled]="!currentState.allStepsViewed ? true : null"
+                    (click)="navigateByStepIndex($event, currentState.summaryInfo.index)">
+                    <lib-form-stepper-section-icon class="lib-form-stepper-nav-section__icon"
+                        [libFormStepperIcon]="currentState.summaryInfo.icon"
+                        [libFormStepperIsValid]="currentState.allStepsViewed" />
+
+                    <span class="lib-form-stepper-nav-section__title lib-form-stepper-nav-section__title--width"
+                        [class.lib-form-stepper-nav-section__title--expanded]="!isMobile() || currentState.stepIndex === currentState.summaryInfo.index">
+                        {{ currentState.summaryInfo.title }}
+                    </span>
+                </button>
+            </div>
+            }
+        </nav>
+    </div>
+</div>

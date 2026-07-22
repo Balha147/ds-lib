@@ -1,0 +1,6 @@
+@if (logoConfig(); as config) {
+<button type="button" class="lib-button-unstyled lib-layout-logo__btn" (click)="onClick()">
+    <img [src]="config.src" [attr.alt]="config.alt" class="lib-layout-logo__img"
+        [class.lib-layout-logo__img--compact-on-desktop]="config.compactOnDesktop" />
+</button>
+}

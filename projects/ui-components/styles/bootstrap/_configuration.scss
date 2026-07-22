@@ -1,0 +1,75 @@
+@use '../lib-bootstrap/variables' as vars;
+
+// Variables locales et de configuration
+$success: vars.$vert_positif;
+$danger: vars.$rouge_negatif;
+$noir: vars.$noir;
+
+// Définition propre des radius pour pouvoir les réutiliser dans l'override
+$base-border-radius: 0.25rem;
+$base-border-radius-sm: 0.125rem;
+$base-border-radius-lg: 0.5rem;
+
+// Importation et override Bootstrap en un seul bloc
+@forward 'bootstrap/scss/bootstrap' with ($primary: vars.$corail_lib_brand,
+    $secondary: vars.$gris_dark,
+    $success: $success,
+    $warning: vars.$jaune_light,
+    $danger: $danger,
+    $info: vars.$bleu_texte,
+    $form-switch-focus-color: vars.$gris_dark,
+    $min-contrast-ratio: 3,
+    $grid-breakpoints: (xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 1024px,
+        xl: 1280px,
+        xxl: 1440px,
+    ),
+    $border-radius: $base-border-radius,
+    $border-radius-sm: $base-border-radius-sm,
+    $border-radius-lg: $base-border-radius-lg,
+    $border-radius-xl: 1rem,
+    $border-radius-2xl: 2rem,
+    $box-shadow: 0 3px 6px rgba(34, 34, 34, 0.3),
+    $box-shadow-sm: 0 1px 2px rgba(34, 34, 34, 0.3),
+    $box-shadow-lg: 0 6px 12px rgba(34, 34, 34, 0.3),
+    $font-family-sans-serif: vars.$lib-ff-regular,
+    $font-size-base: 1rem,
+    $font-size-lg: 1.375rem,
+    $input-btn-focus-width: 0,
+    $btn-padding-y: 0.4375rem,
+    $btn-padding-x: 1.5rem,
+    $btn-padding-y-sm: 0.35rem,
+    $btn-padding-x-sm: 1rem,
+    $btn-padding-y-lg: 0.65625rem,
+    $btn-padding-x-lg: 1.5rem,
+    $btn-border-radius: $base-border-radius,
+    $btn-border-radius-sm: $base-border-radius-sm,
+    $btn-border-radius-lg: $base-border-radius-lg,
+    $form-label-margin-bottom: 0.25rem,
+    $input-border-color: vars.$gris_dark,
+    $input-focus-border-color: none,
+    $input-group-addon-bg: vars.$gris_background,
+    $form-floating-label-transform: scale(0.75) translateY(-0.5rem) translateX(0.15rem),
+    $form-feedback-icon-valid: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'><path fill='#{$success}' d='M1002.448 139.272c-24.128-18.432-58.56-13.76-76.928 10.368l-492.224 644.992-339.648-339.648c-21.44-21.44-56.128-21.44-77.568 0-21.44 21.376-21.44 56.128 0 77.568l384 384c0.96 0.896 2.112 1.152 3.072 1.984 0.896 0.832 1.408 2.048 2.432 2.816 2.688 2.048 5.76 3.072 8.704 4.608 1.856 0.96 3.52 2.176 5.504 2.944 6.208 2.304 12.608 3.712 19.008 3.712h0.064c7.616 0 15.168-1.92 22.272-5.12 2.368-1.088 4.16-2.88 6.4-4.224 3.392-2.176 7.104-3.776 10.112-6.72 0.96-1.024 1.344-2.368 2.24-3.456 0.768-0.832 1.856-1.152 2.56-2.048l530.304-694.912c18.368-24.064 13.76-58.496-10.304-76.864z'/></svg>"),
+    $form-feedback-icon-invalid: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'><path fill='#{$danger}' d='M593.975 511.992l413.071-413.071c22.605-22.605 22.605-59.314 0-81.919-22.669-22.669-59.378-22.669-81.983 0l-413.007 413.071-413.136-413.071c-22.605-22.669-59.249-22.669-81.919 0-22.669 22.605-22.669 59.314 0 81.919l413.071 413.071-413.071 413.071c-22.669 22.605-22.669 59.314 0 81.983 22.669 22.605 59.314 22.605 81.919 0l413.136-413.071 413.007 413.071c22.605 22.605 59.314 22.605 81.983 0 22.605-22.669 22.605-59.378 0-81.983l-413.071-413.071z'/></svg>"),
+    $form-switch-width: 1.625em,
+    $nav-link-padding-y: 0.35rem,
+    $nav-link-padding-x: 1rem,
+    $nav-pills-border-radius: 999px,
+    $dropdown-link-active-color: vars.$bleu_dark,
+    $dropdown-link-active-bg: vars.$bleu_turquoise_light,
+    $dropdown-item-padding-y: 0.5rem,
+    $alert-padding-y: 1.5rem,
+    $alert-padding-x: 1.5rem,
+    $alert-border-radius: 8px,
+    $alert-border-width: 0,
+    $btn-close-color: $noir,
+    $btn-close-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024' fill='#{$noir}'><path d='M593.975 511.992l413.071-413.071c22.605-22.605 22.605-59.314 0-81.919-22.669-22.669-59.378-22.669-81.983 0l-413.007 413.071-413.136-413.071c-22.605-22.669-59.249-22.669-81.919 0-22.669 22.605-22.669 59.314 0 81.919l413.071 413.071-413.071 413.071c-22.669 22.605-22.669 59.314 0 81.983 22.669 22.605 59.314 22.605 81.919 0l413.136-413.071 413.007 413.071c22.605 22.605 59.314 22.605 81.983 0 22.605-22.669 22.605-59.378 0-81.983l-413.071-413.071z'/></svg>"),
+    $modal-inner-padding: 1.5rem,
+    $modal-backdrop-bg: $noir,
+    $modal-header-padding-y: 1rem,
+    $modal-content-border-width: 0,
+    $modal-header-border-width: 0,
+    $modal-footer-border-width: 0);

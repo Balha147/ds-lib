@@ -1,0 +1,28 @@
+{
+  "extends": "../../../tsconfig.storybook.json",
+  "compilerOptions": {
+    "types": [
+      "node"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
+  },
+  "exclude": [
+    "../src/test.ts",
+    "../src/**/*.spec.ts"
+  ],
+  "include": [
+    "../src/**/*.ts",
+    "../icon/**/*.ts",
+    "../form-stepper/**/*.ts",
+    "../link-back/**/*.ts",
+    "../spinner/**/*.ts",
+    "../**/*.stories.*",
+    "../form-input/**/*.ts",
+    "../form-checkbox/**/*.ts",
+    "./preview.ts"
+  ],
+  "files": [
+    "./typings.d.ts"
+  ]
+}

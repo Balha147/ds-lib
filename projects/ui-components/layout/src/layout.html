@@ -1,0 +1,43 @@
+<lib-layout-header class="lib-layout-container__top lib-layout-header"></lib-layout-header>
+
+<div class="lib-layout-container__main lib-layout-container__main--centered lib-layout-main">
+    <div class="lib-layout-main__content">
+        <ng-content></ng-content>
+    </div>
+
+    <div class="lib-layout-main__footer">
+        <ng-content select="[libLayoutFooter]"></ng-content>
+    </div>
+</div>
+
+<div #navRef class="lib-layout-container__nav lib-layout-nav rounded-3"
+    [class.lib-layout-container__nav--opened]="isNavOpened()" [class.lib-layout-container__nav--fixed]="hasFixedMenu()">
+    <div class="lib-layout-nav__inner rounded-3" #navInnerRef>
+        <lib-layout-header class="lib-layout-nav__header lib-layout-header"></lib-layout-header>
+
+        <div class="lib-layout-nav__content lib-layout-nav-content">
+            <div class="lib-layout-nav-content__main">
+                <ng-content select="[libLayoutNav]"></ng-content>
+            </div>
+
+            <div class="lib-layout-nav-content__footer">
+                <ng-content select="[libLayoutNavFooter]"></ng-content>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (isSubnavOpened()) {
+<lib-layout-subnav animate.enter="lib-layout-fade-in" animate.leave="lib-layout-fade-out"
+    class="lib-layout-container__subnav lib-layout-subnav rounded-3"
+    [class.lib-layout-container__subnav--opened]="isSubnavOpened()"
+    [class.lib-layout-container__subnav--fixed]="hasFixedMenu()" [style.height]="subnavHeight()">
+    <ng-content select="[libLayoutSubnav]"></ng-content>
+</lib-layout-subnav>
+}
+
+@if (isNavOpened()) {
+<div animate.enter="lib-layout-fade-in" animate.leave="lib-layout-fade-out"
+    class="lib-layout-container__backdrop lib-layout-container__backdrop--opened" (click)="closeMenu()">
+</div>
+}

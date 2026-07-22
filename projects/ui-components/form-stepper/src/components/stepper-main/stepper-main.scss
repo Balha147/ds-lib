@@ -1,0 +1,33 @@
+.lib-form-stepper-main {
+    &__prev {
+        text-decoration: none !important;
+
+        &-icon {
+            vertical-align: middle;
+        }
+
+        &-text {
+            margin-left: 0.33rem;
+            font-size: 0.875rem;
+        }
+    }
+
+    &__title {
+        margin: 1.5rem 0 1rem 0;
+    }
+
+    &__content {
+        margin-bottom: 1.5rem;
+    }
+}
+
+// Note: the following class is defined in `lib-form-stepper-prev.directive.ts`
+a.lib-form-stepper-prev--disabled {
+
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+        color: var(--gris_light) !important;
+    }
+}

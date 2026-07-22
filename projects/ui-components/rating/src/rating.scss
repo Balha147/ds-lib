@@ -1,0 +1,404 @@
+.lib-rating {
+    display: block;
+    width: 100%;
+    font-family: var(--lib-ff-regular, inherit);
+    color: #343a40;
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    &__label {
+        display: block;
+        margin-bottom: 0.625rem;
+        font-family: var(--lib-ff-bold, inherit);
+        font-size: 0.875rem;
+        line-height: 1.4;
+        color: #343a40;
+    }
+
+    &__stars {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.25rem;
+        border-radius: 0.75rem;
+        background: transparent;
+
+        cursor: pointer;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:focus-visible {
+            outline: 2px solid #ff4b33;
+            outline-offset: 3px;
+            box-shadow: 0 0 0 4px rgba(255, 75, 51, 0.22);
+        }
+    }
+
+    &__star {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+
+        width: 2.5rem;
+        height: 2.5rem;
+
+        margin: 0;
+        padding: 0;
+
+        border: 0;
+        border-radius: 50%;
+
+        background: transparent;
+
+        font: inherit;
+
+        cursor: pointer;
+
+        appearance: none;
+        -webkit-appearance: none;
+
+        transition:
+            background-color 160ms ease,
+            transform 160ms ease,
+            box-shadow 160ms ease;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:hover:not(:disabled) {
+            background: rgba(255, 193, 7, 0.08);
+            transform: scale(1.08);
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.55;
+            transform: none;
+        }
+
+        // --- ÉTOILE PLEINE ---
+        &--full {
+            .lib-rating__star-icon {
+                color: #ffc107;
+                filter: drop-shadow(0 2px 3px rgba(255, 193, 7, 0.25));
+            }
+
+            &:hover:not(:disabled) {
+                background: rgba(255, 193, 7, 0.1);
+
+                .lib-rating__star-icon {
+                    color: #ffb300;
+                }
+            }
+        }
+
+        // --- DEMI-ÉTOILE (dégradé sans décalage) ---
+        &--half {
+            .lib-rating__star-icon {
+                background: linear-gradient(90deg, #ffc107 50%, #b8bec5 50%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                filter: drop-shadow(0 2px 3px rgba(255, 193, 7, 0.25));
+            }
+        }
+
+        // --- ÉTOILE VIDE ---
+        &--empty {
+            .lib-rating__star-icon {
+                color: #b8bec5;
+            }
+        }
+
+        &--disabled {
+            cursor: not-allowed;
+        }
+    }
+
+    &__star-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 1.75rem;
+        height: 1.75rem;
+
+        font-size: 1.75rem;
+        line-height: 1;
+
+        user-select: none;
+
+        transition:
+            color 160ms ease,
+            transform 160ms ease,
+            filter 160ms ease;
+    }
+
+    &__emojis {
+        display: flex;
+        align-items: stretch;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    &__emoji {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        flex: 0 0 auto;
+
+        min-width: 5.75rem;
+        min-height: 5.25rem;
+
+        margin: 0;
+        padding: 0.75rem 0.875rem;
+
+        border: 1px solid #dee2e6;
+        border-radius: 1rem;
+
+        background: #ffffff;
+        color: #343a40;
+
+        font: inherit;
+
+        cursor: pointer;
+
+        appearance: none;
+        -webkit-appearance: none;
+
+        box-shadow:
+            0 1px 2px rgba(0, 0, 0, 0.04),
+            0 4px 10px rgba(0, 0, 0, 0.035);
+
+        transition:
+            border-color 160ms ease,
+            background-color 160ms ease,
+            box-shadow 160ms ease,
+            transform 160ms ease;
+
+        &:hover:not(:disabled) {
+            border-color: rgba(255, 75, 51, 0.4);
+            background: #fff5f2;
+
+            box-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.05),
+                0 8px 18px rgba(0, 0, 0, 0.08);
+
+            transform: translateY(-2px);
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        &:focus-visible {
+            outline: 2px solid #ff4b33;
+            outline-offset: 3px;
+
+            box-shadow:
+                0 0 0 4px rgba(255, 75, 51, 0.22),
+                0 8px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.55;
+            transform: none;
+            box-shadow: none;
+        }
+
+        &--selected {
+            border-color: #ff4b33;
+            background: #fff0ec;
+
+            box-shadow:
+                0 0 0 3px rgba(255, 75, 51, 0.1),
+                0 6px 16px rgba(255, 75, 51, 0.12);
+
+            transform: translateY(-2px);
+
+            .lib-rating__emoji-icon {
+                transform: scale(1.12);
+            }
+
+            .lib-rating__emoji-label {
+                color: #db3924;
+            }
+
+            &:hover:not(:disabled) {
+                border-color: #db3924;
+                background: #ffe9e4;
+                transform: translateY(-3px);
+            }
+        }
+    }
+
+    &__emoji-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 2rem;
+        height: 2rem;
+
+        margin-bottom: 0.35rem;
+
+        font-size: 1.75rem;
+        line-height: 1;
+
+        user-select: none;
+
+        transition: transform 160ms ease;
+    }
+
+    &__emoji-label {
+        display: block;
+
+        font-family: var(--lib-ff-bold, inherit);
+        font-size: 0.75rem;
+        line-height: 1.2;
+
+        color: #6c757d;
+
+        white-space: nowrap;
+    }
+
+    &__hint {
+        display: block;
+
+        margin-top: 0.5rem;
+
+        font-size: 0.75rem;
+        line-height: 1.4;
+
+        color: #6c757d;
+    }
+
+    &__error {
+        display: block;
+
+        margin-top: 0.5rem;
+
+        font-size: 0.75rem;
+        line-height: 1.4;
+
+        color: #dc3545;
+    }
+
+    &--invalid {
+        .lib-rating__stars {
+            &:focus-visible {
+                outline-color: #dc3545;
+
+                box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.15);
+            }
+        }
+
+        .lib-rating__emoji {
+            border-color: rgba(220, 53, 69, 0.35);
+        }
+    }
+
+    &--disabled {
+
+        .lib-rating__stars,
+        .lib-rating__emojis {
+            opacity: 0.65;
+        }
+
+        .lib-rating__stars {
+            cursor: not-allowed;
+        }
+    }
+
+    &--readonly {
+
+        .lib-rating__star,
+        .lib-rating__emoji {
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .lib-rating__stars {
+            cursor: default;
+        }
+
+        .lib-rating__star:hover {
+            background: transparent;
+            transform: none;
+        }
+
+        .lib-rating__emoji:hover {
+            background: #ffffff;
+
+            box-shadow:
+                0 1px 2px rgba(0, 0, 0, 0.04),
+                0 4px 10px rgba(0, 0, 0, 0.035);
+
+            transform: none;
+        }
+    }
+
+    @media (max-width: 576px) {
+        &__stars {
+            gap: 0.125rem;
+        }
+
+        &__star {
+            width: 2.25rem;
+            height: 2.25rem;
+        }
+
+        &__star-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+
+            font-size: 1.5rem;
+        }
+
+        &__emojis {
+            gap: 0.375rem;
+        }
+
+        &__emoji {
+            min-width: 4.75rem;
+            min-height: 4.75rem;
+
+            padding: 0.625rem 0.5rem;
+
+            border-radius: 0.875rem;
+        }
+
+        &__emoji-icon {
+            width: 1.75rem;
+            height: 1.75rem;
+
+            font-size: 1.5rem;
+        }
+
+        &__emoji-label {
+            font-size: 0.6875rem;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+        &__star,
+        &__star-icon,
+        &__emoji,
+        &__emoji-icon {
+            transition: none;
+        }
+    }
+}

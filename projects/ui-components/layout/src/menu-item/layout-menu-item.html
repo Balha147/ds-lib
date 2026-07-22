@@ -1,0 +1,9 @@
+<div class="lib-layout-menu-item-content">
+    @if (icon()) {
+    <i class="lib-layout-menu-item-content__icon lib-fs-4" [class]="'libicon-' + icon()" aria-hidden="true"></i>
+    }
+    <ng-content></ng-content>
+</div>
+
+<i class="lib-layout-menu-item__chevron ms-2 libicon-chevron-droit" aria-hidden="true"
+    style="color: var(--lib-primary);"></i>

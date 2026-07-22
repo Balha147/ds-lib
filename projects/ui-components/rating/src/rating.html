@@ -1,0 +1,70 @@
+<div class="lib-rating__field">
+
+    @if (label()) {
+    <label class="lib-rating__label" [attr.for]="id">
+        {{ label() }}
+    </label>
+    }
+
+    @if (mode() === 'stars') {
+
+    <div class="lib-rating__stars" role="slider" [attr.id]="id"
+        [attr.aria-label]="ariaLabel() || label() || 'Évaluation'" [attr.aria-valuemin]="0" [attr.aria-valuemax]="max()"
+        [attr.aria-valuenow]="currentStarValue()" [attr.aria-valuetext]="currentRatingText()"
+        [attr.aria-valuestep]="step()" [attr.aria-disabled]="disabled()" [attr.aria-readonly]="readonly()"
+        [attr.tabindex]="disabled() || readonly() ? -1 : 0" [attr.aria-invalid]="isInvalid()"
+        (keydown)="handleStarKeydown($event)">
+
+        @for (star of starValues(); track star) {
+
+        <button type="button" class="lib-rating__star" [class.lib-rating__star--full]="isStarFull(star)"
+            [class.lib-rating__star--half]="isStarHalf(star)" [class.lib-rating__star--empty]="isStarEmpty(star)"
+            [class.lib-rating__star--disabled]="disabled()" [disabled]="disabled() || readonly()"
+            [attr.aria-label]="getStarAriaLabel(star)" tabindex="-1" (click)="selectStarFromClick($event, star)">
+            <span class="lib-rating__star-icon" aria-hidden="true">★</span>
+        </button>
+
+        }
+
+    </div>
+
+    } @else {
+
+    <div class="lib-rating__emojis" role="radiogroup" [attr.aria-label]="ariaLabel() || label()">
+
+        @for (emoji of emojis(); track emoji.value) {
+
+        <button type="button" class="lib-rating__emoji" [class.lib-rating__emoji--selected]="
+                isEmojiSelected(emoji.value)
+            " [disabled]="disabled() || readonly()" [attr.aria-label]="emoji.label"
+            [attr.aria-checked]="isEmojiSelected(emoji.value)" role="radio" tabindex="0"
+            (click)="selectEmoji(emoji.value)" (keydown)="handleEmojiKeydown($event, emoji.value)">
+            <span class="lib-rating__emoji-icon" aria-hidden="true">
+                {{ emoji.value }}
+            </span>
+
+            <span class="lib-rating__emoji-label">
+                {{ emoji.label }}
+            </span>
+
+        </button>
+
+        }
+
+    </div>
+
+    }
+
+    @if (hint()) {
+    <div class="lib-rating__hint">
+        {{ hint() }}
+    </div>
+    }
+
+    @if (isInvalid() && !noErrorMessages()) {
+    <div class="lib-rating__error" role="alert">
+        {{ firstErrorMessage() }}
+    </div>
+    }
+
+</div>

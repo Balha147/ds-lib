@@ -1,0 +1,11 @@
+@use 'sass:list';
+@use 'colors_tokens' as colors;
+
+$lib-spinner-colors: colors.$corail_lib_brand, colors.$jaune_dark, colors.$corail_lib_brand, colors.$bleu_dark,
+    colors.$corail_lib_brand, colors.$rose_light;
+
+$lib-spinner-length: list.length($lib-spinner-colors);
+
+$lib-spinner-shift: 0.5em;
+
+$lib-spinner-duration-base: 2s;

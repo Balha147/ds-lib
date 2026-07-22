@@ -1,0 +1,15 @@
+<div class="lib-layout-subnav__buttons">
+    <button type="button" class="lib-button-unstyled lib-fs-8" (click)="closeSubnav()">
+        <i class="libicon-fleche-gauche me-1 fs-6" aria-hidden="true"></i>
+        Retour
+    </button>
+
+    <button type="button" class="lib-button-unstyled lib-fs-8" (click)="toggleNav()">
+        Fermer
+        <i class="libicon-close ms-1 fs-6" aria-hidden="true"></i>
+    </button>
+</div>
+
+<div class="lib-layout-subnav__content">
+    <ng-content></ng-content>
+</div>

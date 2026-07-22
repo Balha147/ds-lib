@@ -1,0 +1,68 @@
+@use '../app' as app;
+
+.alert {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+}
+
+.alert-dismissible {
+    padding-right: 3rem;
+}
+
+.lib-alert__icon {
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
+.lib-alert__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: app.$alert-padding-y app.$alert-padding-x;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    line-height: 1;
+    color: inherit;
+
+    &:hover {
+        opacity: 0.75;
+    }
+
+    &:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: -2px;
+    }
+}
+
+.lib-alert-light {
+    --bs-alert-color: #{app.$noir};
+    --bs-alert-bg: #{app.$gris_background};
+    --bs-alert-border-color: transparent;
+}
+
+.lib-alert-success {
+    --bs-alert-color: #{app.$noir};
+    --bs-alert-bg: #{app.$alerte_vert_positif};
+    --bs-alert-border-color: transparent;
+}
+
+.lib-alert-danger {
+    --bs-alert-color: #{app.$noir};
+    --bs-alert-bg: #{app.$alerte_rouge_negatif};
+    --bs-alert-border-color: transparent;
+}
+
+.lib-alert-warning {
+    --bs-alert-color: #{app.$noir};
+    --bs-alert-bg: #{app.$alerte_jaune_attention};
+    --bs-alert-border-color: transparent;
+}
+
+.lib-alert-info {
+    --bs-alert-color: #{app.$noir};
+    --bs-alert-bg: #{app.$alerte_bleu_information};
+    --bs-alert-border-color: transparent;
+}

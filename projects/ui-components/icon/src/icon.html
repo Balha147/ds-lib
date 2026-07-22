@@ -1,0 +1,5 @@
+@if (label()) {
+<i [class]="name()" [attr.aria-label]="label()" role="img"></i>
+} @else {
+<i [class]="name()" aria-hidden="true"></i>
+}

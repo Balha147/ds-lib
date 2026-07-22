@@ -1,0 +1,38 @@
+<div class="lib-input-field" [class.lib-input-field--error]="isInvalid()" [class.lib-input-field--success]="isValid()">
+
+    <div class="lib-input-field__wrapper">
+        <mat-date-range-input class="lib-input-field__control lib-input-field__control--range" [id]="id"
+            [rangePicker]="picker" [disabled]="disabled()" [attr.aria-label]="ariaLabel()">
+
+            <input #startInput libFlexibleDateInput matStartDate [placeholder]="placeholders().start"
+                [value]="value()?.start" [readOnly]="readonly()" (dateParsed)="onDateChange('start', $event)"
+                (dateInput)="onDateChange('start', $event.value ?? null)" (focus)="onFocus()" (blur)="onBlur()" />
+
+            <input matEndDate libFlexibleDateInput [placeholder]="placeholders().end" [value]="value()?.end"
+                [readOnly]="readonly()" (dateParsed)="onDateChange('end', $event)"
+                (dateInput)="onDateChange('end', $event.value ?? null)" (focus)="onFocus()" (blur)="onBlur()" />
+        </mat-date-range-input>
+
+        @if (label()) {
+        <label [for]="id" class="lib-input-field__label">{{ label() }}</label>
+        }
+
+        <div class="lib-input-field__suffix">
+            <button type="button" class="lib-button-unstyled" [disabled]="disabled()" (click)="openPicker(picker)">
+                <lib-icon name="libicon-calendrier" aria-hidden="true"></lib-icon>
+            </button>
+        </div>
+    </div>
+
+    @if (!noErrorMessages() && isInvalid()) {
+    <div class="lib-input-field__message lib-input-field__message--error">
+        {{ firstErrorMessage() }}
+    </div>
+    } @else if (hint()) {
+    <div class="lib-input-field__message">
+        {{ hint() }}
+    </div>
+    }
+</div>
+
+<mat-date-range-picker #picker (closed)="onBlur()"></mat-date-range-picker>

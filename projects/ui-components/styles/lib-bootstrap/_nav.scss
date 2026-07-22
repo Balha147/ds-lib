@@ -1,0 +1,51 @@
+@use '../app' as app;
+
+$lib-nav-margin: 0.75rem;
+
+.lib-nav-pills {
+    &.nav-pills {
+        margin-bottom: calc($lib-nav-margin - 10px);
+
+        .nav-link {
+            position: relative;
+            margin-bottom: 8px;
+            white-space: nowrap;
+
+            &.lib-droplet::after {
+                opacity: 0;
+                animation: libNavPillsDropletAnim 0.075s ease-in-out 0.15s forwards;
+            }
+
+            &:not(.active, .disabled) {
+                box-shadow: app.$box-shadow;
+                color: app.$gris_dark;
+
+                &:hover {
+                    color: app.$corail_lib_brand;
+                }
+            }
+
+            &.disabled {
+                box-shadow: app.$box-shadow-sm;
+            }
+        }
+    }
+}
+
+.lib-nav-tabs {
+    &.nav-tabs {
+        margin-bottom: $lib-nav-margin;
+    }
+}
+
+@keyframes libNavPillsDropletAnim {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}

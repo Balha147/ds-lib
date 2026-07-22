@@ -1,0 +1,105 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@ds-design-system/ui-components/accordion": [
+        "./projects/ui-components/accordion/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/ai-search": [
+        "./projects/ui-components/ai-search/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/alert": [
+        "./projects/ui-components/alert/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/badge": [
+        "./projects/ui-components/badge/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/breadcrumb": [
+        "./projects/ui-components/breadcrumb/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/carousel": [
+        "./projects/ui-components/carousel/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/checkbox": [
+        "./projects/ui-components/checkbox/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/date-range-picker": [
+        "./projects/ui-components/date-range-picker/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/datepicker": [
+        "./projects/ui-components/datepicker/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/fieldset": [
+        "./projects/ui-components/fieldset/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/flag": [
+        "./projects/ui-components/flag/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/form-card": [
+        "./projects/ui-components/form-card/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/form-core": [
+        "./projects/ui-components/form-core/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/form-input": [
+        "./projects/ui-components/form-input/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/form-stepper": [
+        "./projects/ui-components/form-stepper/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/icon": [
+        "./projects/ui-components/icon/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/layout": [
+        "./projects/ui-components/layout/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/link-back": [
+        "./projects/ui-components/link-back/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/org-chart": [
+        "./projects/ui-components/org-chart/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/paginator": [
+        "./projects/ui-components/paginator/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/progress-bar": [
+        "./projects/ui-components/progress-bar/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/radio": [
+        "./projects/ui-components/radio/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/rating": [
+        "./projects/ui-components/rating/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/scroll-top": [
+        "./projects/ui-components/scroll-top/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/select": [
+        "./projects/ui-components/select/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/shared": [
+        "./projects/ui-components/shared/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/skeleton": [
+        "./projects/ui-components/skeleton/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/slider": [
+        "./projects/ui-components/slider/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/spinner": [
+        "./projects/ui-components/spinner/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/tabs": [
+        "./projects/ui-components/tabs/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/timeline": [
+        "./projects/ui-components/timeline/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components/tooltip": [
+        "./projects/ui-components/tooltip/src/public-api.ts"
+      ],
+      "@ds-design-system/ui-components": [
+        "./projects/ui-components/src/public-api.ts"
+      ]
+    }
+  }
+}

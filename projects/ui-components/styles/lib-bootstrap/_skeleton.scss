@@ -1,0 +1,70 @@
+.lib-skeleton {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--gris_light);
+    flex-shrink: 0;
+    max-width: 100%;
+}
+
+.lib-skeleton--shimmer {
+    background-image: linear-gradient(100deg,
+            transparent 20%,
+            color-mix(in srgb, var(--gris_background) 60%, transparent) 50%,
+            transparent 80%);
+    background-size: 200% 100%;
+    background-repeat: no-repeat;
+    animation: lib-skeleton-shimmer 1.6s ease-in-out infinite;
+}
+
+.lib-skeleton--pulse {
+    animation: lib-skeleton-pulse 1.8s ease-in-out infinite;
+}
+
+.lib-skeleton--none {
+    animation: none;
+}
+
+@keyframes lib-skeleton-shimmer {
+    from {
+        background-position: 150% 0;
+    }
+
+    to {
+        background-position: -50% 0;
+    }
+}
+
+@keyframes lib-skeleton-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .lib-skeleton--shimmer,
+    .lib-skeleton--pulse {
+        animation: none;
+        opacity: 0.7;
+    }
+}
+
+.lib-skeleton-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+@media (max-width: 576px) {
+    .lib-skeleton--shimmer {
+        animation-duration: 1.3s;
+    }
+}

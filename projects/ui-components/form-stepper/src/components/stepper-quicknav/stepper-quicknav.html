@@ -1,0 +1,51 @@
+@let currentNav = nav();
+
+<div class="lib-form-stepper-quicknav__wrapper d-flex flex-wrap flex-sm-column flex-md-row">
+
+    @if (!libFormStepperCompact()) {
+    @for (section of currentNav; track section.id) {
+    @if (section.hasQuicknav) {
+    <div
+        class="lib-form-stepper-quicknav__section bg-beige_sable lib-form-stepper-quicknav__section--multi rounded-4 gris_sable_light_bg p-4">
+        <h4 class="lib-form-stepper-quicknav__section-title mb-3">
+            <lib-form-stepper-section-icon
+                class="lib-form-stepper-quicknav__section-icon rounded-circle gris_sable_dark_bg"
+                [libFormStepperIcon]="section.icon" [libFormStepperIsValid]="!section.icon"
+                [libFormStepperDisableAnimation]="true">
+            </lib-form-stepper-section-icon>
+
+            {{ section.title }}
+        </h4>
+
+        <ng-container [ngTemplateOutlet]="steps" [ngTemplateOutletContext]="{ section: section }">
+        </ng-container>
+    </div>
+    }
+    }
+    } @else {
+    <div class="lib-form-stepper-quicknav__section rounded-4 bg-gris_sable_light p-4">
+        @for (section of currentNav; track section.id) {
+        @if (section.hasQuicknav) {
+        <ng-container [ngTemplateOutlet]="steps" [ngTemplateOutletContext]="{ section: section }">
+        </ng-container>
+        }
+        }
+    </div>
+    }
+</div>
+
+<ng-template #steps let-section="section">
+    @for (step of section.steps(); track step.id) {
+    <div class="mb-2 titre-16">
+        @if (libFormStepperCompact() || step.title !== section.title || section.steps().length >= 2) {
+        <strong class="mr-1">{{ step.shortTitle || step.title }}&nbsp;:&nbsp;</strong>
+        }
+
+        <span>{{ getStepValue(step) }}</span>
+
+        <button type="button" tabindex="-1" [attr.aria-label]="'Modifier ' + (step.shortTitle || step.title)"
+            class="px-3 lib-button-unstyled gris_dark libicon-crayon" (click)="goToStep(step)">
+        </button>
+    </div>
+    }
+</ng-template>

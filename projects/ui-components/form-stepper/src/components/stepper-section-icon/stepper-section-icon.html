@@ -1,0 +1,11 @@
+@if (libFormStepperIsValid()) {
+<span class="lib-form-stepper-section-icon__wrapper" [class.no-animation]="libFormStepperDisableAnimation()"
+  animate.enter="fade-in" animate.leave="fade-out">
+  <lib-icon name="libicon-check"></lib-icon>
+</span>
+} @else {
+<span class="lib-form-stepper-section-icon__wrapper" [class.no-animation]="libFormStepperDisableAnimation()"
+  animate.enter="fade-in" animate.leave="fade-out">
+  <lib-icon [name]="libFormStepperIcon() || 'libicon-crayon'"></lib-icon>
+</span>
+}

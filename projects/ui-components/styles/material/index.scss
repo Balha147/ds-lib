@@ -1,0 +1,91 @@
+@use '@angular/cdk/overlay' as cdk-overlay with ($overlay-container-z-index: 2000,
+    $overlay-z-index: 2000,
+    $overlay-backdrop-z-index: 2000);
+
+@use '@angular/material' as mat;
+@use '../app' as app;
+
+@include cdk-overlay.overlay();
+@include mat.core();
+
+$theme: mat.define-theme((color: (theme-type: light,
+                primary: mat.$red-palette,
+                tertiary: mat.$blue-palette,
+            ),
+            typography: (brand-family: app.$lib-ff-regular,
+                plain-family: app.$lib-ff-regular,
+            ),
+            density: (scale: -1,
+            ),
+        ));
+
+@include mat.all-component-themes($theme);
+
+.mat-datepicker-content {
+    --mat-datepicker-calendar-container-background-color: #{app.$blanc} !important;
+    --mat-datepicker-calendar-header-divider-color: #{app.$gris_light} !important;
+    --mat-sys-surface-container-high: #{app.$blanc} !important;
+    --mat-sys-surface-container-highest: #{app.$blanc} !important;
+
+    background-color: app.$blanc !important;
+    border-radius: 12px !important;
+    border: 1px solid app.$gris_light !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
+
+    .mat-datepicker-content-container,
+    .mat-calendar {
+        background-color: app.$blanc !important;
+        font-family: app.$lib-ff-regular;
+    }
+
+    .mat-calendar-period-button {
+        font-weight: 600;
+        color: app.$noir;
+    }
+
+    .mat-calendar-arrow {
+        fill: app.$noir;
+    }
+
+    .mat-calendar-table-header th {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: app.$gris_dark;
+    }
+
+    .mat-calendar-body-cell-content {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 36px !important;
+        height: 36px !important;
+        margin: auto !important;
+        border-radius: 50% !important;
+        box-sizing: border-box !important;
+        font-size: 0.875rem;
+        color: app.$noir;
+
+        &:hover {
+            background-color: app.$gris_background !important;
+        }
+
+        &.mat-calendar-body-today:not(.mat-calendar-body-selected) {
+            border: 1.5px dashed app.$rouge_negatif !important;
+            background-color: transparent !important;
+            color: app.$rouge_negatif !important;
+            font-weight: 700;
+        }
+
+        &.mat-calendar-body-selected {
+            background-color: app.$rouge_negatif !important;
+            color: app.$blanc !important;
+            border: none !important;
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(204, 0, 0, 0.3);
+        }
+    }
+
+    .mat-calendar-body-today {
+        box-shadow: none !important;
+    }
+}

@@ -1,0 +1,17 @@
+@if (visible()) {
+<div class="alert lib-alert-{{ type() }}" [class.alert-dismissible]="dismissible()">
+    @if (icon(); as iconName) {
+    <lib-icon [name]="iconName" size="sm" class="lib-alert__icon" aria-hidden="true" />
+    }
+
+    <div class="alert-content lib-ff-regular">
+        <ng-content></ng-content>
+    </div>
+
+    @if (dismissible()) {
+    <button type="button" class="lib-alert__close" aria-label="Fermer" (click)="onClose()">
+        <lib-icon name="libicon-close" size="sm" aria-hidden="true" />
+    </button>
+    }
+</div>
+}

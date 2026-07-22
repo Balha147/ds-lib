@@ -1,0 +1,210 @@
+.lib-badge-host {
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.lib-badge {
+    --lib-badge-background: transparent;
+    --lib-badge-color: var(--noir);
+    --lib-badge-border-color: transparent;
+    --lib-badge-focus-ring: var(--lib-corail_lib_brand);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    gap: 0.375rem;
+
+    min-width: 0;
+
+    border: 1px solid var(--lib-badge-border-color);
+    border-radius: 999px;
+
+    background-color: var(--lib-badge-background);
+    color: var(--lib-badge-color);
+
+    font-family: var(--lib-ff-regular);
+    font-weight: 500;
+
+    line-height: 1;
+
+    white-space: nowrap;
+    user-select: none;
+
+    transition:
+        background-color 150ms ease,
+        border-color 150ms ease,
+        color 150ms ease,
+        box-shadow 150ms ease;
+
+    // ==================================================
+    // SIZE
+    // ==================================================
+
+    &--sm {
+        min-height: 1.5rem;
+        padding: 0.1875rem 0.5rem;
+
+        font-size: 0.6875rem;
+
+        .lib-badge__icon {
+            width: 0.75rem;
+            height: 0.75rem;
+        }
+
+        .lib-badge__remove {
+            width: 1rem;
+            height: 1rem;
+            font-size: 0.75rem;
+        }
+    }
+
+    &--md {
+        min-height: 1.75rem;
+        padding: 0.25rem 0.625rem;
+
+        font-size: 0.75rem;
+
+        .lib-badge__icon {
+            width: 0.875rem;
+            height: 0.875rem;
+        }
+
+        .lib-badge__remove {
+            width: 1.125rem;
+            height: 1.125rem;
+            font-size: 0.8125rem;
+        }
+    }
+
+    &--lg {
+        min-height: 2rem;
+        padding: 0.3125rem 0.75rem;
+
+        font-size: 0.8125rem;
+
+        .lib-badge__icon {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .lib-badge__remove {
+            width: 1.25rem;
+            height: 1.25rem;
+            font-size: 0.875rem;
+        }
+    }
+
+    // ==================================================
+    // APPEARANCE
+    // ==================================================
+
+    &--soft {
+        --lib-badge-background: color-mix(in srgb,
+                var(--lib-primary) 12%,
+                transparent);
+
+        --lib-badge-color: var(--lib-corail_lib_brand);
+        --lib-badge-border-color: transparent;
+    }
+
+    &--solid {
+        --lib-badge-background: var(--lib-corail_lib_brand);
+        --lib-badge-color: var(--lib-gris_dark);
+        --lib-badge-border-color: var(--lib-corail_lib_brand);
+    }
+
+    &--outline {
+        --lib-badge-background: transparent;
+        --lib-badge-color: var(--lib-corail_lib_brand);
+        --lib-badge-border-color: var(--lib-corail_lib_brand);
+    }
+
+    // ==================================================
+    // DISABLED
+    // ==================================================
+
+    &--disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    // ==================================================
+    // ICON
+    // ==================================================
+
+    &__icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        flex: 0 0 auto;
+
+        line-height: 1;
+    }
+
+    // ==================================================
+    // LABEL
+    // ==================================================
+
+    &__label {
+        display: inline-block;
+
+        min-width: 0;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+        white-space: nowrap;
+    }
+
+    // ==================================================
+    // REMOVE
+    // ==================================================
+
+    &__remove {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        flex: 0 0 auto;
+
+        margin: 0;
+        padding: 0;
+
+        border: 0;
+        border-radius: 50%;
+
+        background: transparent;
+        color: currentColor;
+
+        font-family: inherit;
+        line-height: 1;
+
+        cursor: pointer;
+
+        transition:
+            background-color 150ms ease,
+            transform 100ms ease;
+
+        &:hover:not(:disabled) {
+            background-color: rgb(0 0 0 / 12%);
+        }
+
+        &:active:not(:disabled) {
+            transform: scale(0.9);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--lib-badge-focus-ring);
+            outline-offset: 2px;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+        }
+    }
+}

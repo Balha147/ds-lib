@@ -1,0 +1,106 @@
+.lib-fieldset {
+    display: block;
+    width: 100%;
+    font-family: var(--lib-ff-regular, inherit);
+
+    &__container {
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 1.25rem;
+        border: 1px solid var(--lib-gris_dark, #dee2e6);
+        border-radius: 1rem;
+        background: var(--lib-gris_light, #ffffff);
+        color: var(--lib-noir, #343a40);
+        transition:
+            border-color 160ms ease,
+            box-shadow 160ms ease,
+            background-color 160ms ease;
+
+        &:focus-within {
+            border-color: rgba(255, 75, 51, 0.45);
+            box-shadow: 0 0 0 3px rgba(255, 75, 51, 0.1);
+        }
+
+        &--subtle {
+            border-color: transparent;
+            background: #f8f9fa;
+        }
+
+        &--outlined {
+            border-width: 2px;
+            border-color: #dee2e6;
+            background: transparent;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+        }
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        margin-bottom: 1rem;
+    }
+
+    &__legend {
+        display: inline-flex;
+        width: auto;
+        max-width: 100%;
+        margin: 0;
+        padding: 0 0.5rem;
+        border: 0;
+        font-family: var(--lib-ff-bold, inherit);
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.4;
+        color: var(--lib-noir, #343a40);
+    }
+
+    &__description {
+        margin: 0;
+        padding: 0 0.5rem;
+        font-size: 0.8125rem;
+        line-height: 1.5;
+        color: var(--lib-gris_dark, #6c757d);
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    &--disabled {
+        opacity: 0.65;
+
+        .lib-fieldset__container {
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+    }
+
+    @media (max-width: 576px) {
+        &__container {
+            padding: 1rem;
+            border-radius: 0.875rem;
+        }
+
+        &__legend {
+            font-size: 0.9375rem;
+        }
+
+        &__description {
+            font-size: 0.75rem;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &__container {
+            transition: none;
+        }
+    }
+}
